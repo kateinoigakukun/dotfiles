@@ -14,7 +14,7 @@ if [ ! -e ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 echo "Downloading solarized"
-git clone https://github.com/tomislav/osx-terminal.app-colors-solarized ~/Deskto/solarized
+git clone https://github.com/tomislav/osx-terminal.app-colors-solarized ~/Desktop/solarized
 echo "Make symbolic link"
 ln -s ~/dotfiles/_vimrc ~/.vimrc
 ln -s ~/dotfiles/_zshrc ~/.zshrc
