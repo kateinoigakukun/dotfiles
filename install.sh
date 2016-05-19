@@ -24,8 +24,8 @@ echo "Copy pached font"
 cp ~/dotfiles/myDroidSansMonoForPowerline.ttf ~/Library/Fonts
 echo "Change default shell to zsh"
 chsh -s /usr/local/bin/zsh
-
-git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto
+echo "Installing Prezto"
+git clone  https://github.com/kateinoigakukun/prezto.git ~/.zprezto
 ##自分のリポに追加してそこから読み込む
 echo "Done!"
 echo "--------------------------------------------------"
