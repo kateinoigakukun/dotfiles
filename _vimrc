@@ -43,8 +43,10 @@ set wildmenu
 set wildmode=list:longest,full
 set history=10000
 set visualbell
+"  ビープ音を消す
 set t_vb=
 set noerrorbells
+
 set wrap
 set display=lastline
 set textwidth=0
@@ -77,6 +79,10 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-endwise')
 call dein#add('keith/swift.vim')
 call dein#add('ryutorion/vim-itunes')
+call dein#add('Shougo/neocomplcache')
+call dein#add('tyru/open-browser.vim')
+call dein#add('minerva1129/previm')
+call dein#add('mattn/webapi-vim')
 call dein#end()
 
 if dein#check_install()
@@ -97,9 +103,48 @@ let g:solarized_termtrans = 1
 let NERDTreeShowHidden = 1
 
 nnoremap <Esc><Esc> :noh<CR>
-nnoremap <C-h> 0
-nnoremap <C-l> $
 nnoremap <C-p> :call itunes#playpause()<CR>
 nnoremap <C-n> :call itunes#next()<CR>
 nnoremap <C-b> :call itunes#prev()<CR>
 nnoremap <C-o> :NERDTreeToggle<CR>
+
+"neocomplcacheの設定
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+" Plugin key-mappings.
+inoremap <expr><C-g> neocomplcache#undo_completion()
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><CR> neocomplcache#close_popup()
+inoremap <expr><C-e> neocomplcache#cancel_popup()
+
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_enable_realtime = 1
+let g:previm_open_cmd = 'open -a "Firefox"'
+let g:previm_show_header = 0
+set backupskip=/tmp/*,/private/tmp/*
