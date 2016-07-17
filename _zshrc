@@ -1,5 +1,5 @@
 export TERM="xterm-256color"
-
+export EDITOR=vim
 #キーバインドをviモードに
 bindkey -v
 #補完機能を有効にする
@@ -32,7 +32,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 if [ -z "$TMUX" ]; then
   if $(tmux has-session); then
-    echo "Do you want to attaach the session? (Y/n)"
+    echo "Do you want to attaach tmux session? (Y/n)"
     read ANSWER
     case $ANSWER in
       "" | "Y" | "y" | "yes" | "Yes" | "YES" )
@@ -40,7 +40,6 @@ if [ -z "$TMUX" ]; then
         ID="`tmux list-sessions`"
         ID="`echo $ID | fzf -m | cut -d: -f1`"
         tmux attach-session -t "$ID";;
-
       * ) echo "";;
     esac
   else

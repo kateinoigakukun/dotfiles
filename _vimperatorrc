@@ -1,0 +1,21 @@
+"3.14.0 (created: 2016/06/07 23:58:16)
+
+source! /Users/yuutas4/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+
+set complete=sfbtS
+
+map h <C-p>
+map l <C-n>
+noremap j 3<C-e>
+noremap k 3<C-y>
+
+noremap [Prefix] i
+nmap i [Prefix]
+
+noremap <C-l> <C-n>
+noremap <C-h> <C-p>
+"http://stackoverflow.com/questions/27323631/how-to-override-content-security-policy-while-including-script-in-browser-js-con"
+noremap <C-g> :open javascript:document.querySelector(".is-selected-tweet").parentNode.parentNode.parentNode.parentNode.querySelector(".js-action-header").click()<CR>
+noremap <C-t> t
