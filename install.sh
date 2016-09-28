@@ -1,6 +1,8 @@
 if [ ! `which brew` ]; then
   echo "Installing Homebrew ... "
-  /usr/bin/ruby "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /usr/bin/ruby "$(curl -f1sSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "Installing Packages ..."
+  brew install `echo list`
 fi
 echo "Installing Vim ... "
 sudo brew install vim
@@ -21,6 +23,8 @@ ln -s _vimrc ~/.vimrc
 ln -s _zshrc ~/.zshrc
 ln -s _tmux.conf ~/.tmux.conf
 ln -s _gvimrc ~/.gvimrc
+ln -s _vimperator ~/.vimperator
+ln -s _vimperatorrc ~/.vimperatorrc
 
 echo "Copy pached font ... "
 cp ~/dotfiles/myDroidSansMonoForPowerline.ttf ~/Library/Fonts
