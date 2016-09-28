@@ -29,6 +29,7 @@ zplug 'bhilburn/powerlevel9k', use:powerlevel9k.zsh-theme
 
 source ~/.zplug/repos/bhilburn/powerlevel9k/powerlevel9k.zsh-theme
 ZSH_THEME="powerlevel9k/powerlevel9k"
+eval "$(rbenv init -)"
 
 if [ -z "$TMUX" ]; then
   if $(tmux has-session); then

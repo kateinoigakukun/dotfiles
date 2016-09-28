@@ -4,7 +4,11 @@ source! /Users/yuutas4/.vimperatorrc.local
 
 " vim: set ft=vimperator:
 
-set complete=sfbtS
+set complete=sfbtSh
+set hintchars=jfnvurhgytbkdmcielsxoe
+set gui=addons,nobookmarks,nomenu,nonavigation,tas
+set titlestring=Firefox
+set hintchars=ifjklasdhguonmerwc
 
 map h <C-p>
 map l <C-n>
@@ -16,6 +20,9 @@ nmap i [Prefix]
 
 noremap <C-l> <C-n>
 noremap <C-h> <C-p>
-"http://stackoverflow.com/questions/27323631/how-to-override-content-security-policy-while-including-script-in-browser-js-con"
 noremap <C-g> :open javascript:document.querySelector(".is-selected-tweet").parentNode.parentNode.parentNode.parentNode.querySelector(".js-action-header").click()<CR>
 noremap <C-t> t
+noremap gh <Nop>
+noremap F ;o
+
+echo .vimperatorrc sourced

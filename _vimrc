@@ -43,6 +43,7 @@ set wildmenu
 set wildmode=list:longest,full
 set history=10000
 set visualbell
+set timeout timeoutlen=0
 "  ビープ音を消す
 set t_vb=
 set noerrorbells
@@ -148,3 +149,6 @@ let g:previm_enable_realtime = 1
 let g:previm_open_cmd = 'open -a "Firefox"'
 let g:previm_show_header = 0
 set backupskip=/tmp/*,/private/tmp/*
+
+nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+nnoremap <C-o> i<Return><Esc>
