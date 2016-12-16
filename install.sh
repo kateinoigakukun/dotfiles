@@ -1,16 +1,15 @@
 if [ ! `which brew` ]; then
   echo "Installing Homebrew ... "
   /usr/bin/ruby "$(curl -f1sSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  echo "Installing Packages ..."
-  brew install `echo list`
+  echo "Installing Homebrew Packages ..."
+  if [  ./list ]; then
+    file=./list 
+    while read line; do
+      brew install $line
+    done < $file
+  fi
 fi
-echo "Installing Vim ... "
-sudo brew install vim
 
-if [ ! `which tmux` ]; then
-  echo "Installing Tmux ... "
-  sudo  brew install tmux
-fi
 if [ ! ~/.tmux/plugins/tpm ]; then
   echo "Cloning Tmux Plugin Manager... "
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -38,5 +37,5 @@ sudo chsh -s /usr/local/bin/zsh
 
 echo "Done!"
 echo "--------------------------------------------------"
-echo "Please change Terminal font to myDroidSansMonoForPowerline."
-echo "Please import Solarized  into Terminal.app preferences. from Desktop"
+echo "Please change Terminal's font to myDroidSansMonoForPowerline."
+echo "Please import Solarized into Terminal.app preferences. from Desktop"

@@ -71,7 +71,6 @@ call dein#add('Shougo/dein.vim')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-fugitive')
-call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/neoyank.vim')
@@ -80,10 +79,15 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-endwise')
 call dein#add('keith/swift.vim')
 call dein#add('ryutorion/vim-itunes')
-call dein#add('Shougo/neocomplcache')
+call dein#add('Shougo/neocomplete')
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('mitsuse/autocomplete-swift')
+call dein#add('slim-template/vim-slim')
 call dein#add('tyru/open-browser.vim')
 call dein#add('minerva1129/previm')
 call dein#add('mattn/webapi-vim')
+call dein#add('vim-syntastic/syntastic')
+call dein#add('landaire/deoplete-swift')
 call dein#end()
 
 if dein#check_install()
@@ -109,46 +113,39 @@ nnoremap <C-n> :call itunes#next()<CR>
 nnoremap <C-b> :call itunes#prev()<CR>
 nnoremap <C-o> :NERDTreeToggle<CR>
 
-"neocomplcacheの設定
-
+"" neocomplcache
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
-
-" Plugin key-mappings.
-inoremap <expr><C-g> neocomplcache#undo_completion()
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
+  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><CR> neocomplcache#close_popup()
-inoremap <expr><C-e> neocomplcache#cancel_popup()
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+" Recommended key-mappings.
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
+" Jump to the first placeholder by typing `<C-k>`.
+autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+
+
 let g:previm_enable_realtime = 1
 let g:previm_open_cmd = 'open -a "Firefox"'
 let g:previm_show_header = 0
 set backupskip=/tmp/*,/private/tmp/*
 
 nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
-nnoremap <C-o> i<Return><Esc>
+nnoremap <C-n> i<Return><Esc>

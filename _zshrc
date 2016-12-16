@@ -10,7 +10,7 @@ setopt auto_list
 setopt auto_menu
 # 補完時に大文字小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-##cdの入力を省略
+#cdの入力を省略
 setopt auto_cd
 #ディレクトリストックに追加する
 setopt auto_pushd
@@ -23,13 +23,54 @@ setopt correct
 
 source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug.git ~/.zplug && source ~/.zplug/init.zsh }
 
+source ~/.git.zsh
+
 zplug 'b4b4r07/zplug', at:v2
-zplug 'bhilburn/powerlevel9k', use:powerlevel9k.zsh-theme
+#zplug 'bhilburn/powerlevel9k', use:powerlevel9k.zsh-theme
+zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+#POWERLEVEL9K_HOME_ICON='🏡'
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir rbenv vcs) 	
+#source ~/.zplug/repos/NicoSantangelo/Alpharized/alpharized.zsh-theme
+#ZSH_THEME='alpharized'
+#zplug "themes/bullet-train", from:oh-my-zsh
 
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
 
-source ~/.zplug/repos/bhilburn/powerlevel9k/powerlevel9k.zsh-theme
-ZSH_THEME="powerlevel9k/powerlevel9k"
+  # Then, source plugins and add commands to $PATH
+zplug load --verbose
+
 eval "$(rbenv init -)"
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+
+function peco-kill() {
+  kill "$(ps -a|sed -e '1d'|peco|cut -c -5)"
+}
+
+zle -N peco-kill
+bindkey '^k' peco-kill
 
 if [ -z "$TMUX" ]; then
   if $(tmux has-session); then

@@ -7,7 +7,7 @@ source! /Users/yuutas4/.vimperatorrc.local
 set complete=sfbtSh
 set hintchars=jfnvurhgytbkdmcielsxoe
 set gui=addons,nobookmarks,nomenu,nonavigation,tas
-set titlestring=Firefox
+set titlestring="Firefox"
 set hintchars=ifjklasdhguonmerwc
 
 map h <C-p>

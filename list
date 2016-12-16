@@ -1,15 +1,20 @@
 autoconf
 cairo
+carthage
 coreutils
+curl
 czmq
 fontconfig
 fontforge
 freetype
 fzf
+gdbm
 gettext
 glib
 gobject-introspection
 harfbuzz
+hiredis
+http-parser
 icu4c
 imagemagick
 john
@@ -21,6 +26,8 @@ libpng
 libsodium
 libtiff
 libtool
+libxml2
+libxslt
 lua
 mecab
 mecab-ipadic
@@ -30,6 +37,9 @@ node
 oniguruma
 openssl
 pango
+pcre
+pcre2
+peco
 phantomjs
 pixman
 pkg-config
@@ -40,6 +50,7 @@ reattach-to-user-namespace
 redis
 ruby-build
 socat
+sourcekitten
 tmux
 tree
 vim
@@ -48,3 +59,4 @@ xctool
 xz
 zeromq
 zplug
+zsh
