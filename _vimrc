@@ -44,6 +44,7 @@ set wildmode=list:longest,full
 set history=10000
 set visualbell
 set timeout timeoutlen=0
+"set termguicolors
 "  ビープ音を消す
 set t_vb=
 set noerrorbells
@@ -68,6 +69,7 @@ execute 'set runtimepath^=' . s:dein_dir
 call dein#begin(s:plugin_dir)
 
 call dein#add('Shougo/dein.vim')
+"call dein#add('altercation/vim-colors-solarized')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-fugitive')
@@ -79,7 +81,9 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-endwise')
 call dein#add('keith/swift.vim')
 call dein#add('ryutorion/vim-itunes')
-call dein#add('Shougo/neocomplete')
+"if !has('nvim')
+  call dein#add('Shougo/neocomplete')
+"endif
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('mitsuse/autocomplete-swift')
 call dein#add('slim-template/vim-slim')
@@ -87,6 +91,7 @@ call dein#add('tyru/open-browser.vim')
 call dein#add('minerva1129/previm')
 call dein#add('mattn/webapi-vim')
 call dein#add('vim-syntastic/syntastic')
+call dein#add('kchmck/vim-coffee-script')
 call dein#add('landaire/deoplete-swift')
 call dein#end()
 
@@ -112,6 +117,7 @@ nnoremap <C-p> :call itunes#playpause()<CR>
 nnoremap <C-n> :call itunes#next()<CR>
 nnoremap <C-b> :call itunes#prev()<CR>
 nnoremap <C-o> :NERDTreeToggle<CR>
+nnoremap <C-h> :!echo `/Users/yuutas4/.rbenv/shims/haml %` > result.html<CR>
 
 "" neocomplcache
 " Disable AutoComplPop.

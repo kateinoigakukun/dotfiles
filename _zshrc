@@ -1,5 +1,5 @@
 export TERM="xterm-256color"
-export EDITOR=vim
+export EDITOR=/usr/local/bin/vim
 #キーバインドをviモードに
 bindkey -v
 #補完機能を有効にする
@@ -24,9 +24,13 @@ setopt correct
 source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug.git ~/.zplug && source ~/.zplug/init.zsh }
 
 source ~/.git.zsh
-
+export XDG_CONFIG_HOME=$HOME/.config
 zplug 'b4b4r07/zplug', at:v2
 #zplug 'bhilburn/powerlevel9k', use:powerlevel9k.zsh-theme
+zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'minerva1129/zsh-autosuggestions'
+zplug 'zsh-users/zsh-completions'
 zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
 #POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 #POWERLEVEL9K_HOME_ICON='🏡'
@@ -47,6 +51,9 @@ zplug load --verbose
 
 eval "$(rbenv init -)"
 
+source ~/.zplug/repos/minerva1129/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
+bindkey '^ ' autosuggest-accept
 function peco-select-history() {
     local tac
     if which tac > /dev/null; then
@@ -88,3 +95,4 @@ if [ -z "$TMUX" ]; then
     tmux
   fi
 fi
+[[ -s /Users/yuutas4/.tmuxinator/scripts/tmuxinator ]] && source /Users/yuutas4/.tmuxinator/scripts/tmuxinator
