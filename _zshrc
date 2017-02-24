@@ -38,7 +38,12 @@ zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
 #source ~/.zplug/repos/NicoSantangelo/Alpharized/alpharized.zsh-theme
 #ZSH_THEME='alpharized'
 #zplug "themes/bullet-train", from:oh-my-zsh
-
+BULLETTRAIN_PROMPT_ORDER=(
+  time
+  dir
+  ruby
+  git
+)
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
   if read -q; then

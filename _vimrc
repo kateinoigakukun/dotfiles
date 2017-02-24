@@ -9,8 +9,8 @@ set cursorcolumn
 set laststatus=2
 set cmdheight=2
 set showmatch
-set matchtime=1
-set helpheight=999
+set matchtime=0
+set helpheight=10
 set list
 set listchars=tab:▸\ ,trail:-,nbsp:%,extends:>,precedes:<,eol:↩︎
 set backspace=indent,eol,start
@@ -32,24 +32,22 @@ set wrapscan
 set gdefault
 set expandtab
 set tabstop=2
-set shiftwidth=2
+set shiftwidth=4
 set softtabstop=2
 set autoindent
 set smartindent
 set clipboard=unnamed
-set mouse=a
+set mouse=n
 set shellslash
 set wildmenu
 set wildmode=list:longest,full
 set history=10000
 set visualbell
 set timeout timeoutlen=0
-"set termguicolors
 "  ビープ音を消す
 set t_vb=
 set noerrorbells
 
-set wrap
 set display=lastline
 set textwidth=0
 set pumheight=10 
@@ -69,7 +67,6 @@ execute 'set runtimepath^=' . s:dein_dir
 call dein#begin(s:plugin_dir)
 
 call dein#add('Shougo/dein.vim')
-"call dein#add('altercation/vim-colors-solarized')
 call dein#add('altercation/vim-colors-solarized')
 call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-fugitive')
@@ -81,9 +78,9 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-endwise')
 call dein#add('keith/swift.vim')
 call dein#add('ryutorion/vim-itunes')
-"if !has('nvim')
+if !has('nvim')
   call dein#add('Shougo/neocomplete')
-"endif
+endif
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('mitsuse/autocomplete-swift')
 call dein#add('slim-template/vim-slim')
@@ -93,6 +90,7 @@ call dein#add('mattn/webapi-vim')
 call dein#add('vim-syntastic/syntastic')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('landaire/deoplete-swift')
+call dein#add('ConradIrwin/vim-bracketed-paste')
 call dein#end()
 
 if dein#check_install()
@@ -131,8 +129,6 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
   return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 " <TAB>: completion.
