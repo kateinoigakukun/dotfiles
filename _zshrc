@@ -14,30 +14,33 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 setopt auto_cd
 #ディレクトリストックに追加する
 setopt auto_pushd
-#ダブっているディレクトリストックを記録しない
-setopt hist_ignore_all_dups
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zsh_history
+# メモリに保存される履歴の件数
+export HISTSIZE=1000
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=100000
+# 重複を記録しない
+setopt hist_ignore_dups
+# 開始と終了を記録
+setopt EXTENDED_HISTORY
 #ビープ音を鳴らさない
 setopt no_beep
 #スペル訂正
 setopt correct
+
+ZSH_HIGHLIGHT_MAXLENGTH=100
 
 source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug.git ~/.zplug && source ~/.zplug/init.zsh }
 
 source ~/.git.zsh
 export XDG_CONFIG_HOME=$HOME/.config
 zplug 'b4b4r07/zplug', at:v2
-#zplug 'bhilburn/powerlevel9k', use:powerlevel9k.zsh-theme
 zplug 'zsh-users/zsh-syntax-highlighting'
-zplug 'zsh-users/zsh-history-substring-search'
-zplug 'minerva1129/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
-#POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-#POWERLEVEL9K_HOME_ICON='🏡'
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir rbenv vcs) 	
-#source ~/.zplug/repos/NicoSantangelo/Alpharized/alpharized.zsh-theme
-#ZSH_THEME='alpharized'
-#zplug "themes/bullet-train", from:oh-my-zsh
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 100
+
 BULLETTRAIN_PROMPT_ORDER=(
   time
   dir
@@ -101,3 +104,4 @@ if [ -z "$TMUX" ]; then
   fi
 fi
 [[ -s /Users/yuutas4/.tmuxinator/scripts/tmuxinator ]] && source /Users/yuutas4/.tmuxinator/scripts/tmuxinator
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
