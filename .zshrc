@@ -58,8 +58,6 @@ zplug load --verbose
 
 eval "$(rbenv init -)"
 
-source ~/.zplug/repos/minerva1129/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=5"
 bindkey '^ ' autosuggest-accept
 function peco-select-history() {
     local tac
