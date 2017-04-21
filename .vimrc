@@ -1,10 +1,10 @@
-set nocompatible
-" -------------------------------------
+set nocompatible " -------------------------------------
 "  vimのオプション
 " -------------------------------------
 set number
 set ruler
-set cursorline
+"重くなる要因 無くても困らない
+"set cursorline
 set cursorcolumn
 set laststatus=2
 set cmdheight=2
@@ -77,7 +77,6 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-endwise')
 call dein#add('keith/swift.vim')
-call dein#add('ryutorion/vim-itunes')
 if !has('nvim')
   call dein#add('Shougo/neocomplete')
 endif
@@ -85,12 +84,12 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('mitsuse/autocomplete-swift')
 call dein#add('slim-template/vim-slim')
 call dein#add('tyru/open-browser.vim')
-call dein#add('minerva1129/previm')
 call dein#add('mattn/webapi-vim')
 call dein#add('vim-syntastic/syntastic')
 call dein#add('kchmck/vim-coffee-script')
 call dein#add('landaire/deoplete-swift')
 call dein#add('ConradIrwin/vim-bracketed-paste')
+call dein#add('davidhalter/jedi-vim')
 call dein#end()
 
 if dein#check_install()
@@ -127,6 +126,10 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
+
+let g:jedi#force_py_version = 3
+
+
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   return pumvisible() ? "\<C-y>" : "\<CR>"
@@ -142,7 +145,18 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 " Jump to the first placeholder by typing `<C-k>`.
 autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+autocmd FileType ruby set shiftwidth=2
 
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
 
 let g:previm_enable_realtime = 1
 let g:previm_open_cmd = 'open -a "Firefox"'
@@ -151,3 +165,9 @@ set backupskip=/tmp/*,/private/tmp/*
 
 nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 nnoremap <C-n> i<Return><Esc>
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+

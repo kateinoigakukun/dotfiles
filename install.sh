@@ -2,7 +2,7 @@ if [ ! `which brew` ]; then
   echo "Installing Homebrew ... "
   /usr/bin/ruby "$(curl -f1sSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   echo "Installing Homebrew Packages ..."
-  if [  ./list ]; then
+  if [ ./list ]; then
     file=./list 
     while read line; do
       brew install $line
@@ -18,12 +18,12 @@ echo "Downloading solarized ... "
 git clone https://github.com/tomislav/osx-terminal.app-colors-solarized ~/Desktop/solarized
 
 echo "Make symbolic link ... "
-ln -s _vimrc ~/.vimrc
-ln -s _zshrc ~/.zshrc
-ln -s _tmux.conf ~/.tmux.conf
-ln -s _gvimrc ~/.gvimrc
-ln -s _vimperator ~/.vimperator
-ln -s _vimperatorrc ~/.vimperatorrc
+dotfiles=(.vimrc .zshrc .tmux.conf .vimperatorrc)
+for file in ${dotfiles[@]}; do
+  echo $file
+  ln -sf "$HOME/dotfiles/$file" "$HOME/$file"
+done
+
 
 echo "Copy pached font ... "
 cp ~/dotfiles/myDroidSansMonoForPowerline.ttf ~/Library/Fonts

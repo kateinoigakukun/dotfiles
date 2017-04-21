@@ -36,7 +36,7 @@ source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug.git ~/.
 source ~/.git.zsh
 export XDG_CONFIG_HOME=$HOME/.config
 zplug 'b4b4r07/zplug', at:v2
-zplug 'zsh-users/zsh-syntax-highlighting'
+#zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-completions'
 zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE = 100
