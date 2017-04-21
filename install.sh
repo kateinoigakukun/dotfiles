@@ -19,7 +19,7 @@ git clone https://github.com/tomislav/osx-terminal.app-colors-solarized ~/Deskto
 
 echo "Make symbolic link ... "
 dotfiles=(.vimrc .zshrc .tmux.conf .vimperatorrc)
-for file in ${dotfiles[@]}; do
+for file in $dotfiles; do
   echo $file
   ln -sf "$HOME/dotfiles/$file" "$HOME/$file"
 done
