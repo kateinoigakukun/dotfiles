@@ -7,6 +7,7 @@ set ruler
 "set cursorline
 set cursorcolumn
 set laststatus=2
+set statusline=2
 set cmdheight=2
 set showmatch
 set matchtime=0
@@ -40,6 +41,7 @@ set clipboard=unnamed
 set mouse=n
 set shellslash
 set wildmenu
+set wildignorecase
 set wildmode=list:longest,full
 set history=10000
 set visualbell
@@ -51,6 +53,7 @@ set noerrorbells
 set display=lastline
 set textwidth=0
 set pumheight=10 
+
 " dein.vimの設定
 " -------------------------------------
 let s:plugin_dir = expand('~/.vim/dein/')
@@ -77,19 +80,19 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('tpope/vim-endwise')
 call dein#add('keith/swift.vim')
-if !has('nvim')
-  call dein#add('Shougo/neocomplete')
-endif
 call dein#add('Shougo/deoplete.nvim')
-call dein#add('mitsuse/autocomplete-swift')
 call dein#add('slim-template/vim-slim')
 call dein#add('tyru/open-browser.vim')
 call dein#add('mattn/webapi-vim')
 call dein#add('vim-syntastic/syntastic')
 call dein#add('kchmck/vim-coffee-script')
-call dein#add('landaire/deoplete-swift')
+"call dein#add('landaire/deoplete-swift')
+call dein#add('mitsuse/autocomplete-swift')
 call dein#add('ConradIrwin/vim-bracketed-paste')
 call dein#add('davidhalter/jedi-vim')
+call dein#add('fishbullet/deoplete-ruby')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('tpope/vim-rails')
 call dein#end()
 
 if dein#check_install()
@@ -103,30 +106,22 @@ filetype plugin indent on
 " -------------------------------------
 syntax enable
 set t_Co=256
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors = 256
-let g:solarized_termtrans = 1
+if exists("neovim_dot_app")
+    colorscheme solarized
+    set background=dark
+else
+    set background=dark
+    colorscheme solarized
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans = 1
+endif
 let NERDTreeShowHidden = 1
 
-nnoremap <Esc><Esc> :noh<CR>
-nnoremap <C-p> :call itunes#playpause()<CR>
-nnoremap <C-n> :call itunes#next()<CR>
-nnoremap <C-b> :call itunes#prev()<CR>
 nnoremap <C-o> :NERDTreeToggle<CR>
-nnoremap <C-h> :!echo `/Users/yuutas4/.rbenv/shims/haml %` > result.html<CR>
+nnoremap <C-g> :GitGutterLineHighlightsToggle<CR>
 
-"" neocomplcache
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#swift#daemon_autostart = 1
 let g:jedi#force_py_version = 3
 
 
@@ -136,34 +131,85 @@ function! s:my_cr_function()
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
 " Recommended key-mappings.
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile Podfile set filetype=ruby
 " Jump to the first placeholder by typing `<C-k>`.
-autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+autocmd FileType swift imap <buffer> <C-j> <Plug>(deoplete_swift_jump_to_placeholder)
 autocmd FileType ruby set shiftwidth=2
-
 autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
 
-if !exists('g:neocomplete#force_omni_input_patterns')
-        let g:neocomplete#force_omni_input_patterns = {}
-endif
+let g:jedi#completions_enabled = 1
+let g:jedi#auto_vim_configuration = 1
 
-" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
-
+let g:deoplete#sources#swift#source_kitten_binary = '/usr/local/bin/sourcekitten'
 let g:previm_enable_realtime = 1
 let g:previm_open_cmd = 'open -a "Firefox"'
 let g:previm_show_header = 0
-set backupskip=/tmp/*,/private/tmp/*
 
-nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
+set backupskip=/tmp/*,/private/tmp/*
+let g:lightline = {
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ },
+        \ 'separator': { 'left': '', 'right': '' },
+        \ 'subseparator': { 'left': '', 'right': '' }
+        \ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    return fugitive#head()
+  else
+    return ''
+  endif
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+
 nnoremap <C-n> i<Return><Esc>
 
 noremap <Up> <Nop>

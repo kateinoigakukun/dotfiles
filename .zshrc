@@ -39,7 +39,8 @@ zplug 'b4b4r07/zplug', at:v2
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-completions'
 zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
-
+zplug 'zsh-users/zsh-completions'
+zplug "felixr/docker-zsh-completion"
 BULLETTRAIN_PROMPT_ORDER=(
   time
   dir
@@ -78,27 +79,47 @@ bindkey '^r' peco-select-history
 
 
 function peco-kill() {
-  kill "$(ps -a|sed -e '1d'|peco|cut -c -5)"
+  kill "$(ps -a|sed -e '1d'|peco|awk '{ print $1 }')"
 }
 
 zle -N peco-kill
 bindkey '^k' peco-kill
 
-if [ -z "$TMUX" ]; then
-  if $(tmux has-session); then
+function select-attach-tmux() {
+    ID="`tmux list-sessions`"
+    if [ -z "$ID" ]; then
+        tmux
+    fi
+    ID="`echo $ID | peco | cut -d: -f1`"
+    if [ -z "$ID" ]; then
+        return
+    fi
+    BUFFER="tmux attach-session -t $ID"
+    zle accept-line
+}
+
+zle -N select-attach-tmux
+bindkey '^t' select-attach-tmux
+
+function attach-tmux() {
+    if [ -n "$TMUX" ]; then
+        return
+    fi
     echo "Do you want to attaach tmux session? (Y/n)"
     read ANSWER
     case $ANSWER in
-      "" | "Y" | "y" | "yes" | "Yes" | "YES" )
-        echo "attach the session."
-        ID="`tmux list-sessions`"
-        ID="`echo $ID | fzf -m | cut -d: -f1`"
-        tmux attach-session -t "$ID";;
-      * ) echo "";;
+        "" | "Y" | "y" | "yes" | "Yes" | "YES" )
+            echo "attach the session."
+            select-attach-tmux;;
+        * ) echo "";;
     esac
-  else
-    tmux
-  fi
-fi
-[[ -s /Users/yuutas4/.tmuxinator/scripts/tmuxinator ]] && source /Users/yuutas4/.tmuxinator/scripts/tmuxinator
+}
+
+echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"
+function chpwd() { echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
+
+attach-tmux
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+alias rm=trash
+alias vim=nvim
+alias vi=nvim
