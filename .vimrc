@@ -53,6 +53,7 @@ set noerrorbells
 set display=lastline
 set textwidth=0
 set pumheight=10 
+set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
 
 " dein.vimの設定
 " -------------------------------------

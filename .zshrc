@@ -123,3 +123,4 @@ if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 alias rm=trash
 alias vim=nvim
 alias vi=nvim
+export PATH="/usr/local/opt/libiconv/bin:$PATH"
