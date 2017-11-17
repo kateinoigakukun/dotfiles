@@ -67,6 +67,7 @@ if !isdirectory(s:dein_dir)
 endif
 
 execute 'set runtimepath^=' . s:dein_dir
+execute 'set runtimepath^=' . expand('~/projects/')
 
 call dein#begin(s:plugin_dir)
 
@@ -85,15 +86,21 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('slim-template/vim-slim')
 call dein#add('tyru/open-browser.vim')
 call dein#add('mattn/webapi-vim')
-call dein#add('vim-syntastic/syntastic')
+"重い
+"call dein#add('vim-syntastic/syntastic')
 call dein#add('kchmck/vim-coffee-script')
 "call dein#add('landaire/deoplete-swift')
-call dein#add('mitsuse/autocomplete-swift')
+call dein#add('kateinoigakukun/deoplete-swift')
 call dein#add('ConradIrwin/vim-bracketed-paste')
 call dein#add('davidhalter/jedi-vim')
 call dein#add('fishbullet/deoplete-ruby')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-rails')
+call dein#add('dag/vim-fish')
+call dein#add('kateinoigakukun/previm')
+call dein#add('godlygeek/tabular')
+call dein#add('plasticboy/vim-markdown')
+call dein#add('tpope/vim-surround')
 call dein#end()
 
 if dein#check_install()
@@ -122,8 +129,14 @@ nnoremap <C-o> :NERDTreeToggle<CR>
 nnoremap <C-g> :GitGutterLineHighlightsToggle<CR>
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#swift#source_kitten_binary = '/usr/local/bin/sourcekitten'
 let g:deoplete#sources#swift#daemon_autostart = 1
+let g:deoplete#sources#swift#sdk = '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
+let g:deoplete#sources#swift#target = 'arm64-apple-ios10.0'
 let g:jedi#force_py_version = 3
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_autowrite = 1
 
 
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -136,17 +149,19 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile Podfile set filetype=ruby
-" Jump to the first placeholder by typing `<C-k>`.
-autocmd FileType swift imap <buffer> <C-j> <Plug>(deoplete_swift_jump_to_placeholder)
+autocmd BufRead,BufNewFile Fastfile set filetype=ruby
+autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
+autocmd FileType javascript set shiftwidth=2
+autocmd FileType ruby nnoremap <C-e> :!ruby %
 autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType python nnoremap <C-e> :!python %
+autocmd FileType markdown inoremap $ $$<ESC>i
 
 let g:jedi#completions_enabled = 1
 let g:jedi#auto_vim_configuration = 1
 
-let g:deoplete#sources#swift#source_kitten_binary = '/usr/local/bin/sourcekitten'
 let g:previm_enable_realtime = 1
-let g:previm_open_cmd = 'open -a "Firefox"'
 let g:previm_show_header = 0
 
 set backupskip=/tmp/*,/private/tmp/*
@@ -212,9 +227,7 @@ endfunction
 
 
 nnoremap <C-n> i<Return><Esc>
-
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-

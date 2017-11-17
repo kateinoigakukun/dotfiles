@@ -3,9 +3,7 @@ export EDITOR=/usr/local/bin/vim
 #キーバインドをviモードに
 bindkey -v
 #補完機能を有効にする
-autoload -U compinit; compinit
-#補完一覧を表示
-setopt auto_list
+autoload -U compinit; compinit #補完一覧を表示 setopt auto_list
 #補完キー連打で次の候補へ
 setopt auto_menu
 # 補完時に大文字小文字を区別しない
@@ -44,7 +42,6 @@ zplug "felixr/docker-zsh-completion"
 BULLETTRAIN_PROMPT_ORDER=(
   time
   dir
-  ruby
   git
 )
 if ! zplug check --verbose; then
@@ -61,18 +58,12 @@ eval "$(rbenv init -)"
 
 bindkey '^ ' autosuggest-accept
 function peco-select-history() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
+    tac="tail -r"
 
     BUFFER=$(\history -n 1 | \
         eval $tac | \
         peco --query "$LBUFFER")
     CURSOR=$#BUFFER
-    zle clear-screen
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
@@ -115,12 +106,17 @@ function attach-tmux() {
     esac
 }
 
-echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"
 function chpwd() { echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
 
-attach-tmux
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 alias rm=trash
 alias vim=nvim
 alias vi=nvim
 export PATH="/usr/local/opt/libiconv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export PGDATA=/usr/local/var/postgres
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+attach-tmux
