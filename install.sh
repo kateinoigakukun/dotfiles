@@ -18,7 +18,7 @@ echo "Downloading solarized ... "
 git clone https://github.com/tomislav/osx-terminal.app-colors-solarized ~/Desktop/solarized
 
 echo "Make symbolic link ... "
-dotfiles=(.vimrc .zshrc .tmux.conf .vimperatorrc)
+dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc)
 for file in $dotfiles; do
   echo $file
   ln -sf "$HOME/dotfiles/$file" "$HOME/$file"

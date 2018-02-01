@@ -8,9 +8,9 @@ export PGDATA=/usr/local/var/postgres
 
 
 path=(
-    /usr/local/opt/libiconv/bin
-    $HOME/.pyenv
-    $PYENV_ROOT/bin
+    /usr/local/opt/libiconv/bin(N-/)
+    $HOME/.pyenv(N-/)
+    $PYENV_ROOT/bin(N-/)
     $path
 )
 
