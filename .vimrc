@@ -101,6 +101,11 @@ call dein#add('kateinoigakukun/previm')
 call dein#add('godlygeek/tabular')
 call dein#add('plasticboy/vim-markdown')
 call dein#add('tpope/vim-surround')
+call dein#add('thinca/vim-quickrun')
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+call dein#add('ujihisa/neco-ghc')
+call dein#add('osyo-manga/vim-watchdogs')
+call dein#add('eagletmt/ghcmod-vim')
 call dein#end()
 
 if dein#check_install()
@@ -153,10 +158,19 @@ autocmd BufRead,BufNewFile Fastfile set filetype=ruby
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType javascript set shiftwidth=2
-autocmd FileType ruby nnoremap <C-e> :!ruby %
+nnoremap <C-e> :QuickRun<CR>
+nnoremap <C-t> :GhcModType<CR>
 autocmd FileType python setlocal omnifunc=jedi#completions
-autocmd FileType python nnoremap <C-e> :!python %
 autocmd FileType markdown inoremap $ $$<ESC>i
+
+let g:quickrun_config = {
+\   "vim/async" : {
+\       'command': 'vim',
+\       'exec': '%C -N -u NONE -i NONE -V1 -e -s --cmd "source %s" --cmd qall!',
+\       "runner" : "vimproc",
+\       "hook/output_encode/encoding" : "sjis",
+\   },
+\}
 
 let g:jedi#completions_enabled = 1
 let g:jedi#auto_vim_configuration = 1
@@ -231,3 +245,4 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+let g:user_emmet_mode='n'

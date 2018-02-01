@@ -1,49 +1,27 @@
-export TERM="xterm-256color"
-export EDITOR=/usr/local/bin/vim
-#キーバインドをviモードに
-bindkey -v
-#補完機能を有効にする
-autoload -U compinit; compinit #補完一覧を表示 setopt auto_list
-#補完キー連打で次の候補へ
+autoload -U compinit; compinit
+setopt auto_list
 setopt auto_menu
-# 補完時に大文字小文字を区別しない
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-#cdの入力を省略
 setopt auto_cd
-#ディレクトリストックに追加する
 setopt auto_pushd
-# 履歴ファイルの保存先
-export HISTFILE=${HOME}/.zsh_history
-# メモリに保存される履歴の件数
-export HISTSIZE=1000
-# 履歴ファイルに保存される履歴の件数
-export SAVEHIST=100000
-# 重複を記録しない
 setopt hist_ignore_dups
-# 開始と終了を記録
 setopt EXTENDED_HISTORY
-#ビープ音を鳴らさない
 setopt no_beep
-#スペル訂正
-setopt correct
+setopt correct 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-ZSH_HIGHLIGHT_MAXLENGTH=100
+if [ ! -d $ZPLUG_HOME ]; then
+    git clone https://github.com/b4b4r07/zplug.git $ZPLUG_HOME
+fi
+source ~/.zplug/init.zsh
 
-source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug.git ~/.zplug && source ~/.zplug/init.zsh }
-
-source ~/.git.zsh
-export XDG_CONFIG_HOME=$HOME/.config
-zplug 'b4b4r07/zplug', at:v2
+zplug "plugins/git", from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
-zplug 'zsh-users/zsh-completions'
 zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
 zplug 'zsh-users/zsh-completions'
 zplug "felixr/docker-zsh-completion"
-BULLETTRAIN_PROMPT_ORDER=(
-  time
-  dir
-  git
-)
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "Tarrasch/zsh-bd", use:bd.zsh
+
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
   if read -q; then
@@ -51,30 +29,35 @@ if ! zplug check --verbose; then
   fi
 fi
 
-  # Then, source plugins and add commands to $PATH
 zplug load --verbose
 
-eval "$(rbenv init -)"
+BULLETTRAIN_PROMPT_ORDER=(
+  time
+  dir
+  git
+)
 
-bindkey '^ ' autosuggest-accept
+function zle-line-init zle-keymap-select {
+    VIM_NORMAL="%K{208}%F{black}%k%f%K{208}%F{white} % [N] %k%f%K{black}%F{208}%k%f"
+    VIM_INSERT="%K{075}%F{black}%k%f%K{075}%F{white} % [I] %k%f%K{black}%F{075}%k%f"
+    RPS1="${${KEYMAP/vicmd/$VIM_NORMAL}/(main|viins)/$VIM_INSERT}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
 function peco-select-history() {
     tac="tail -r"
 
-    BUFFER=$(\history -n 1 | \
+    BUFFER=$(\history -n 1 | uniq | \
         eval $tac | \
         peco --query "$LBUFFER")
     CURSOR=$#BUFFER
 }
-zle -N peco-select-history
-bindkey '^r' peco-select-history
-
 
 function peco-kill() {
-  kill "$(ps -a|sed -e '1d'|peco|awk '{ print $1 }')"
+    kill "$(ps -a|sed -e '1d'|peco|awk '{ print $1 }')"
 }
 
-zle -N peco-kill
-bindkey '^k' peco-kill
 
 function select-attach-tmux() {
     ID="`tmux list-sessions`"
@@ -89,14 +72,12 @@ function select-attach-tmux() {
     zle accept-line
 }
 
-zle -N select-attach-tmux
-bindkey '^t' select-attach-tmux
 
 function attach-tmux() {
     if [ -n "$TMUX" ]; then
         return
     fi
-    echo "Do you want to attaach tmux session? (Y/n)"
+    echo "Do you want to attach tmux session? (Y/n)"
     read ANSWER
     case $ANSWER in
         "" | "Y" | "y" | "yes" | "Yes" | "YES" )
@@ -108,15 +89,14 @@ function attach-tmux() {
 
 function chpwd() { echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
 
-if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
-alias rm=trash
-alias vim=nvim
-alias vi=nvim
-export PATH="/usr/local/opt/libiconv/bin:$PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-export PGDATA=/usr/local/var/postgres
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-attach-tmux
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+zle -N peco-select-history
+zle -N peco-kill
+zle -N select-attach-tmux
+bindkey -v
+bindkey '^t' select-attach-tmux
+bindkey '^r' peco-select-history
+bindkey '^k' peco-kill
