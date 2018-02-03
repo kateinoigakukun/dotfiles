@@ -1,41 +1,40 @@
-if [ ! `which brew` ]; then
-  echo "Installing Homebrew ... "
-  /usr/bin/ruby "$(curl -f1sSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  echo "Installing Homebrew Packages ..."
-  if [ ./list ]; then
-    file=./list 
-    while read line; do
-      brew install $line
-    done < $file
+setup_brew() {
+  if [ ! `which brew` ]; then
+    echo "Installing Homebrew ... "
+    /usr/bin/ruby "$(curl -f1sSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
-fi
+  echo "Installing Homebrew Packages ..."
+  if [ ! 'which brew-file' ]; then
+    brew install rcmdnk/file/brew-file
+  fi
+  brew file install -f Brewfile
+}
 
-if [ ! ~/.tmux/plugins/tpm ]; then
-  echo "Cloning Tmux Plugin Manager... "
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-echo "Downloading solarized ... "
-git clone https://github.com/tomislav/osx-terminal.app-colors-solarized ~/Desktop/solarized
+link() {
+  echo "Make symbolic link ... "
+  dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc)
+  for file in $dotfiles; do
+    echo $file
+    ln -sf "$HOME/dotfiles/$file" "$HOME/$file"
+  done
+}
 
-echo "Make symbolic link ... "
-dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc)
-for file in $dotfiles; do
-  echo $file
-  ln -sf "$HOME/dotfiles/$file" "$HOME/$file"
-done
+font() {
+  wget "https://github.com/powerline/fonts/raw/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf"
+  mv "~/dotfiles/Droid Sans Mono for Powerline.otf" ~/Library/Fonts
+}
 
+shell() {
+  echo "Change default shell to zsh ... "
+  if [ ! `grep /usr/local/bin/zsh /etc/shells` ]; then
+    sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
+  fi
+  sudo chsh -s /usr/local/bin/zsh
+}
 
-echo "Copy pached font ... "
-cp ~/dotfiles/myDroidSansMonoForPowerline.ttf ~/Library/Fonts
-
-echo "Change default shell to zsh ... "
-if [ ! `grep /usr/local/bin/zsh /etc/shells` ]; then
-  sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
-fi
-sudo chsh -s /usr/local/bin/zsh
-
+setup_brew
+link
+font
+shell
 
 echo "Done!"
-echo "--------------------------------------------------"
-echo "Please change Terminal's font to myDroidSansMonoForPowerline."
-echo "Please import Solarized into Terminal.app preferences. from Desktop"
