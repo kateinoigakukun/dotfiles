@@ -157,6 +157,7 @@ autocmd BufRead,BufNewFile Podfile set filetype=ruby
 autocmd BufRead,BufNewFile Fastfile set filetype=ruby
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
+autocmd FileType sh set shiftwidth=2
 autocmd FileType javascript set shiftwidth=2
 nnoremap <C-e> :QuickRun<CR>
 nnoremap <C-t> :GhcModType<CR>
@@ -246,3 +247,4 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 let g:user_emmet_mode='n'
+

@@ -5,11 +5,12 @@ export HISTSIZE=1000
 export SAVEHIST=100000
 export XDG_CONFIG_HOME=$HOME/.config
 export PGDATA=/usr/local/var/postgres
+export PYENV_ROOT=$HOME/.pyenv
 
 
 path=(
     /usr/local/opt/libiconv/bin(N-/)
-    $HOME/.pyenv(N-/)
+    $HOME/.cabal/bin(N-/)
     $PYENV_ROOT/bin(N-/)
     $path
 )

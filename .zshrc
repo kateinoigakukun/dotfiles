@@ -60,31 +60,23 @@ function peco-kill() {
 
 
 function select-attach-tmux() {
-    ID="`tmux list-sessions`"
-    if [ -z "$ID" ]; then
-        tmux
-    fi
-    ID="`echo $ID | peco | cut -d: -f1`"
-    if [ -z "$ID" ]; then
-        return
-    fi
-    BUFFER="tmux attach-session -t $ID"
-    zle accept-line
-}
-
-
-function attach-tmux() {
     if [ -n "$TMUX" ]; then
         return
     fi
-    echo "Do you want to attach tmux session? (Y/n)"
-    read ANSWER
-    case $ANSWER in
-        "" | "Y" | "y" | "yes" | "Yes" | "YES" )
-            echo "attach the session."
-            select-attach-tmux;;
-        * ) echo "";;
-    esac
+    sessions="`tmux list-sessions`"
+    if [ -z $sessions ]; then
+        exec tmux
+        return
+    fi
+    session=$(echo "$sessions\nnew" | peco --prompt "tmux session >" | cut -d: -f1)
+    if [ -z $session ]; then
+        return
+    fi
+    if [ $session = new ]; then
+        exec tmux
+        return
+    fi
+    exec tmux attach-session -t $session
 }
 
 function chpwd() { echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
@@ -97,6 +89,12 @@ zle -N peco-select-history
 zle -N peco-kill
 zle -N select-attach-tmux
 bindkey -v
+bindkey -a '^t' select-attach-tmux
 bindkey '^t' select-attach-tmux
+bindkey -a '^r' peco-select-history
 bindkey '^r' peco-select-history
+bindkey -a '^k' peco-kill
 bindkey '^k' peco-kill
+bindkey "^?" backward-delete-char
+
+select-attach-tmux
