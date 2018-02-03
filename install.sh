@@ -10,15 +10,6 @@ setup_brew() {
   brew file install -f Brewfile
 }
 
-link() {
-  echo "Make symbolic link ... "
-  dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc)
-  for file in $dotfiles; do
-    echo $file
-    ln -sf "$HOME/dotfiles/$file" "$HOME/$file"
-  done
-}
-
 font() {
   wget "https://github.com/powerline/fonts/raw/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf"
   mv "~/dotfiles/Droid Sans Mono for Powerline.otf" ~/Library/Fonts
@@ -33,7 +24,6 @@ shell() {
 }
 
 setup_brew
-link
 font
 shell
 
