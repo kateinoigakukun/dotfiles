@@ -1,0 +1,57 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+    inoremap <silent> <CR> <C-r>=<SID>neocomplete_cr_function()<CR>
+    function! s:neocomplete_cr_function()
+      return pumvisible() ? "\<C-y>" : "\<CR>"
+    endfunction
+    " <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+    nnoremap <C-g> :GitGutterLineHighlightsToggle<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = {
+    \   'component_function': {
+    \       'filename': 'LightlineFilename',
+    \   },
+    \ }
+    
+    function! LightlineFilename()
+      return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+            \ &filetype ==# 'unite' ? unite#get_status_string() :
+            \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+            \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    endfunction
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+    let NERDTreeShowHidden = 1
+    nnoremap <C-o> :NERDTreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
