@@ -7,7 +7,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 export PGDATA=/usr/local/var/postgres
 export PYENV_ROOT=$HOME/.pyenv
 
-
 path=(
     /usr/local/opt/libiconv/bin(N-/)
     $HOME/.cabal/bin(N-/)
@@ -15,9 +14,6 @@ path=(
     $path
 )
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
 
 alias rm=trash
 alias vim=nvim

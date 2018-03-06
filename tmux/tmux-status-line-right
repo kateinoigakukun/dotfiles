@@ -64,4 +64,4 @@ ipv4s_on_nic=$(ifconfig en0 2>/dev/null | awk '$1 == "inet" { print $2 }')
 
 lan_ip="#[bold][LAN ${ipv4s_on_nic}]#[default] "
 
-echo "${lan_ip}${load_avg}${sound}${airport}${battery}"
+echo "${lan_ip}${load_avg}${airport}${battery}"

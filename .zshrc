@@ -4,9 +4,18 @@ setopt auto_menu
 setopt auto_cd
 setopt auto_pushd
 setopt hist_ignore_dups
-setopt EXTENDED_HISTORY
+setopt extended_history
 setopt no_beep
 setopt correct 
+export HISTSIZE=1000
+export SAVEHIST=100000
+
+
+# env
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 if [ ! -d $ZPLUG_HOME ]; then
