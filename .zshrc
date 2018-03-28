@@ -64,7 +64,7 @@ function peco-select-history() {
 }
 
 function peco-kill() {
-    kill "$(ps -a|sed -e '1d'|peco|awk '{ print $1 }')"
+    kill "$(ps -ax|sed -e '1d'|peco|awk '{ print $1 }')"
 }
 
 
