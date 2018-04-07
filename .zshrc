@@ -106,4 +106,6 @@ bindkey -a '^k' peco-kill
 bindkey '^k' peco-kill
 bindkey "^?" backward-delete-char
 
+alias g='cd $(ghq root)/$(ghq list | peco)'
+
 select-attach-tmux
