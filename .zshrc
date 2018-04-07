@@ -26,8 +26,7 @@ source ~/.zplug/init.zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
-zplug 'zsh-users/zsh-completions'
-zplug "felixr/docker-zsh-completion"
+zplug 'docker/cli', use:'contrib/completion/zsh/_docker'
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "Tarrasch/zsh-bd", use:bd.zsh
 
