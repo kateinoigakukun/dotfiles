@@ -88,6 +88,9 @@ function select-attach-tmux() {
 }
 
 function chpwd() { echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print "/"$1"/"$2}'| rev)\007"}
+function zshexit() {
+    ps -ax|grep peco|grep -v grep|awk '{ print $1 }'|xargs kill
+}
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
