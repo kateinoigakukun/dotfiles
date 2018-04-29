@@ -6,6 +6,7 @@ export SAVEHIST=100000
 export XDG_CONFIG_HOME=$HOME/.config
 export PGDATA=/usr/local/var/postgres
 export PYENV_ROOT=$HOME/.pyenv
+export GOPATH=$HOME/.go
 
 path=(
     /usr/local/opt/libiconv/bin(N-/)
