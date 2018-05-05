@@ -31,10 +31,17 @@ change-shell:
 	@chsh -s /usr/local/bin/zsh
 
 link-dotfiles:
-	@echo "\033[32mMake symbolic links...\033[0m"
-	@dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc); \
+	@echo "\033[32mMake dotfile symlinks...\033[0m"
+	@dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc .gemrc); \
 	for file in $${dotfiles[@]}; do \
 		ln -snfv "$$HOME/dotfiles/$$file" "$$HOME/$$file"; \
+	done
+
+link-config:
+	@echo "\033[32mMake config symlinks...\033[0m"
+	@configs=$$(ls ./config); \
+	for config in $${configs[@]}; do \
+		ln -snfv "$$HOME/dotfiles/config/$$config" "$$HOME/.config/$$config"; \
 	done
 
 deploy: install-brew install-brew-package install-font change-shell link-dotfiles
