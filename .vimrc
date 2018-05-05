@@ -53,12 +53,12 @@ set noerrorbells
 
 set display=lastline
 set textwidth=0
-set pumheight=10 
+set pumheight=10
 
 " dein.vimの設定
 " -------------------------------------
 let s:plugin_dir = expand('~/.vim/dein/')
-let s:toml_dir = expand('~/dotfiles/vim')
+let s:toml_dir = expand('$DOTFILE_PATH/vim')
 let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
 
 " dein.vimがないときはgit cloneする

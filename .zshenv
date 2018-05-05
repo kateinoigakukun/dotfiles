@@ -7,6 +7,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export PGDATA=/usr/local/var/postgres
 export PYENV_ROOT=$HOME/.pyenv
 export GOPATH=$HOME/.go
+export DOTFILE_PATH=$HOME/dotfiles
 
 path=(
     /usr/local/opt/libiconv/bin(N-/)
@@ -19,4 +20,3 @@ path=(
 alias rm=trash
 alias vim=nvim
 alias vi=nvim
-

@@ -6,7 +6,7 @@ setopt auto_pushd
 setopt hist_ignore_dups
 setopt extended_history
 setopt no_beep
-setopt correct 
+setopt correct
 export HISTSIZE=1000
 export SAVEHIST=100000
 
@@ -71,7 +71,7 @@ function select-attach-tmux() {
     if [ -n "$TMUX" ]; then
         return
     fi
-    sessions=$(tmux list-sessions | awk '{ 
+    sessions=$(tmux list-sessions | awk '{
         id = substr($1,1,length($1)-1);
         "tmux display-message -p -F \"#{pane_current_path}\" -t" id ":0"|getline pwd;
         print id ": " pwd
@@ -113,6 +113,5 @@ bindkey '^k' peco-kill
 bindkey "^?" backward-delete-char
 
 alias g='cd $(ghq root)/$(ghq list | peco)'
-alias gbundle='BUNDLE_GEMFILE=$HOME/dotfiles/Gemfile bundle'
 
 select-attach-tmux
