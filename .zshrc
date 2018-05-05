@@ -71,7 +71,11 @@ function select-attach-tmux() {
     if [ -n "$TMUX" ]; then
         return
     fi
-    sessions="`tmux list-sessions`"
+    sessions=$(tmux list-sessions | awk '{ 
+        id = substr($1,1,length($1)-1);
+        "tmux display-message -p -F \"#{pane_current_path}\" -t" id ":0"|getline pwd;
+        print id ": " pwd
+    }')
     if [ -z $sessions ]; then
         exec tmux
         return
