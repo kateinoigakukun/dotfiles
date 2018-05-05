@@ -15,12 +15,12 @@ install-brew-package:
 install-font:
 	@echo "\033[32mInstalling Powerline fonts.\033[0m"
 	@if [ ! -e ./fonts ]; then \
-    mkdir ./fonts;\
-  fi
+		mkdir ./fonts;\
+	fi
 	@cd fonts && { \
-    curl -LO "https://github.com/powerline/fonts/raw/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf"; \
-    cd - ;\
-  }
+		curl -LO "https://github.com/powerline/fonts/raw/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf"; \
+		cd - ;\
+	}
 	@cp ./fonts/* ~/Library/Fonts
 
 change-shell:
