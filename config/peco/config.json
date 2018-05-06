@@ -4,7 +4,7 @@
         "C-j": "peco.SelectDown"
     },
     "Style": {
-        "Selected": ["on_cyan"],
-        "Matched": ["red"]
+        "Selected": ["on_magenta"],
+        "Matched": ["cyan"]
     }
 }
