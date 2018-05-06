@@ -5,7 +5,7 @@ set number
 set ruler
 "重くなる要因 無くても困らない
 "set cursorline
-set cursorcolumn
+"set cursorcolumn
 set laststatus=2
 set statusline=2
 set cmdheight=2
@@ -87,15 +87,6 @@ filetype plugin indent on
 " -------------------------------------
 syntax enable
 set t_Co=256
-if exists("neovim_dot_app")
-    colorscheme solarized
-    set background=dark
-else
-    set background=dark
-    colorscheme solarized
-    let g:solarized_termcolors=256
-    let g:solarized_termtrans = 1
-endif
 
 let g:deoplete#enable_at_startup = 1
 let g:unite_enable_start_insert=1

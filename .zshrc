@@ -25,7 +25,8 @@ source ~/.zplug/init.zsh
 
 zplug "plugins/git", from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
-zplug 'caiogondim/bullet-train-oh-my-zsh-theme', use:'bullet-train.zsh-theme'
+zplug 'mafredri/zsh-async'
+zplug 'sindresorhus/pure', use:pure.zsh
 zplug 'docker/cli', use:'contrib/completion/zsh/_docker'
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "Tarrasch/zsh-bd", use:bd.zsh
@@ -39,12 +40,6 @@ fi
 
 zplug load --verbose
 
-BULLETTRAIN_PROMPT_ORDER=(
-  time
-  dir
-  git
-)
-
 function zle-line-init zle-keymap-select {
     VIM_NORMAL="%K{208}%F{black}%k%f%K{208}%F{white} % [N] %k%f%K{black}%F{208}%k%f"
     VIM_INSERT="%K{075}%F{black}%k%f%K{075}%F{white} % [I] %k%f%K{black}%F{075}%k%f"
@@ -53,13 +48,10 @@ function zle-line-init zle-keymap-select {
     zle reset-prompt
 }
 
-function peco-select-history() {
-    tac="tail -r"
-
-    BUFFER=$(\history -n 1 | uniq | \
-        eval $tac | \
-        peco --query "$LBUFFER")
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
+    zle reset-prompt
 }
 
 function peco-kill() {
@@ -68,9 +60,6 @@ function peco-kill() {
 
 
 function select-attach-tmux() {
-    if [ -n "$TMUX" ]; then
-        return
-    fi
     sessions=$(tmux list-sessions | awk '{
         id = substr($1,1,length($1)-1);
         "tmux display-message -p -F \"#{pane_current_path}\" -t" id ":0"|getline pwd;
@@ -100,18 +89,18 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 zle -N zle-line-init
 zle -N zle-keymap-select
-zle -N peco-select-history
+zle -N peco-history-selection
 zle -N peco-kill
 zle -N select-attach-tmux
 bindkey -v
 bindkey -a '^t' select-attach-tmux
 bindkey '^t' select-attach-tmux
-bindkey -a '^r' peco-select-history
-bindkey '^r' peco-select-history
+bindkey -a '^r' peco-history-selection
+bindkey '^r' peco-history-selection
 bindkey -a '^k' peco-kill
 bindkey '^k' peco-kill
 bindkey "^?" backward-delete-char
 
-alias g='cd $(ghq root)/$(ghq list | peco)'
-
-select-attach-tmux
+if [ ! -n "$TMUX" ]; then
+    select-attach-tmux
+fi

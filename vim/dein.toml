@@ -31,7 +31,7 @@ hook_add = '''
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
-repo = 'altercation/vim-colors-solarized'
+repo = 'connorholyday/vim-snazzy'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
