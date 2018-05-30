@@ -97,6 +97,7 @@ let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile Podfile set filetype=ruby
 autocmd BufRead,BufNewFile Fastfile set filetype=ruby
+autocmd BufRead,BufNewFile *.sil set filetype=sil
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType sh set shiftwidth=2
@@ -106,32 +107,8 @@ autocmd FileType markdown inoremap $ $$<ESC>i
 autocmd FileType haskell nnoremap <C-t> :GhcModType<CR>
 
 nnoremap <C-e> :QuickRun<CR>
+nnoremap <C-c> :<C-u>bw! \[quickrun\ output\]<CR>
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-
-nnoremap [unite] <Nop>
-nmap <Space> [unite]
-nnoremap <silent> [unite]u :<C-u>Unite<Space>file_mru<CR>
-nnoremap <silent> [unite]g :<C-u>Unite<Space>grep<CR>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
-
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-    "ESCでuniteを終了
-    nmap <buffer> <ESC> <Plug>(unite_exit)
-    "入力モードのときjjでノーマルモードに移動
-    imap <buffer> jj <Plug>(unite_insert_leave)
-    "入力モードのときctrl+wでバックスラッシュも削除
-    imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
-    "ctrl+jで縦に分割して開く
-    nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-    inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-    "ctrl+jで横に分割して開く
-    nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-    inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-    "ctrl+oでその場所に開く
-    nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-    inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-endfunction
