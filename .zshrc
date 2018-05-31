@@ -27,7 +27,7 @@ zplug "plugins/git", from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'mafredri/zsh-async'
 zplug 'sindresorhus/pure', use:pure.zsh
-zplug 'docker/cli', use:'contrib/completion/zsh/_docker'
+#zplug 'docker/cli', use:'contrib/completion/zsh/_docker'
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "Tarrasch/zsh-bd", use:bd.zsh
 
