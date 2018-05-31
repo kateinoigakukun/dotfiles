@@ -27,6 +27,13 @@ hook_source = '''
 repo = 'keith/swift.vim'
 on_ft = 'swift'
 
+
+[[plugins]]
+repo = 'apple/swift'
+on_ft = 'swift'
+rtp = 'utils/vim'
+
+
 [[plugins]]
 repo = 'slim-template/vim-slim'
 on_ft = 'slim'
