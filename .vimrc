@@ -39,6 +39,7 @@ set softtabstop=2
 set autoindent
 set smartindent
 set clipboard=unnamed
+set clipboard+=unnamedplus
 set mouse=n
 set shellslash
 set wildmenu

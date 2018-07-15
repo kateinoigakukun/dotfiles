@@ -36,6 +36,10 @@ link-dotfiles:
 	for file in $${dotfiles[@]}; do \
 		ln -snfv "$$HOME/dotfiles/$$file" "$$HOME/$$file"; \
 	done
+	@if [ ! -e $$HOME/.config/nvim ]; then \
+		mkdir -p $$HOME/.config/nvim;\
+	fi
+	ln -snfv "$$HOME/dotfiles/.vimrc" "$$HOME/.config/nvim/init.vim"; \
 
 link-config:
 	@echo "\033[32mMake config symlinks...\033[0m"
