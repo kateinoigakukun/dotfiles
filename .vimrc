@@ -90,7 +90,7 @@ set t_Co=256
 
 let g:deoplete#enable_at_startup = 1
 let g:unite_enable_start_insert=1
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
 " Recommended key-mappings.
 
@@ -101,10 +101,14 @@ autocmd BufRead,BufNewFile *.sil set filetype=sil
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType sh set shiftwidth=2
-autocmd FileType javascript set shiftwidth=4
+autocmd FileType javascript set shiftwidth=2
+autocmd FileType json set shiftwidth=2
+autocmd FileType html set shiftwidth=2
 autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType markdown inoremap $ $$<ESC>i
 autocmd FileType haskell nnoremap <C-t> :GhcModType<CR>
+
+autocmd InsertLeave * set nopaste
 
 nnoremap <C-e> :QuickRun<CR>
 nnoremap <C-c> :<C-u>bw! \[quickrun\ output\]<CR>
