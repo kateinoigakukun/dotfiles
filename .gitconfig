@@ -1,0 +1,38 @@
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[user]
+	name = Yuta Saito
+	email = kateinoigakukun@gmail.com
+[credential]
+	helper = osxkeychain
+[http]
+	sslVerify = true
+[core]
+	excludesfile = /Users/yuutas4/.gitignore_global
+	editor = nvim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/yuutas4/.stCommitMsg
+
+[diff "word"]
+    textconv=textutil -convert txt -stdout
+    prompt=false
+[diff "pages"]
+    textconv=textutil -convert txt -stdout
+    prompt=false
+[alias]
+  wdiff = diff --word-diff=color --unified=1
+  pagesdiff = diff --pages-diff=color --unified=1
+	st = status
+	cm = commit
+	loq = log
+
+[ghq]
+	root = ~/projects

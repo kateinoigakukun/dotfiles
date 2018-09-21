@@ -35,7 +35,7 @@ change-shell:
 
 link-dotfiles:
 	@echo "\033[32mMake dotfile symlinks...\033[0m"
-	@dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc .gemrc); \
+	@dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc .gemrc .gitconfig); \
 	for file in $${dotfiles[@]}; do \
 		ln -snfv "$$HOME/dotfiles/$$file" "$$HOME/$$file"; \
 	done
