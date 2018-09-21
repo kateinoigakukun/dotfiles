@@ -1,0 +1,6 @@
+map h previousTab
+map l nextTab
+map i LinkHints.activateMode
+map H goBack
+map L goForward
+map u restoreTab
