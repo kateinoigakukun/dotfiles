@@ -12,6 +12,9 @@ install-brew-package:
 	@echo "\033[32mInstalling Homebrew Packages...\033[0m"
 	brew bundle
 
+install-zplug:
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
 install-font:
 	@echo "\033[32mInstalling Powerline fonts.\033[0m"
 	@if [ ! -e ./fonts ]; then \
