@@ -13,7 +13,7 @@ set showmatch
 set matchtime=0
 set helpheight=10
 set list
-set listchars=tab:▸\ ,trail:-,nbsp:%,extends:>,precedes:<,eol:↩︎
+set listchars=tab:▸\ ,trail:-,nbsp:%,extends:>,precedes:<
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
