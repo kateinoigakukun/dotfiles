@@ -33,6 +33,16 @@ repo = 'apple/swift'
 on_ft = 'sil'
 rtp = 'utils/vim'
 
+[[plugins]]
+repo = 'EdJoJob/llvmir-vim'
+on_ft = 'llvm'
+
+[[plugins]]
+repo = 'kateinoigakukun/swift-demangle-vim'
+on_ft = ['sil', 'llvm']
+hook_add = '''
+    let g:swift_demangle#options = ['-compact']
+'''
 
 [[plugins]]
 repo = 'slim-template/vim-slim'
@@ -106,3 +116,10 @@ on_ft = 'haskell'
 [[plugins]]
 repo = 'mattn/webapi-vim'
 
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = 'html'
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = 'tex'

@@ -13,7 +13,6 @@ set showmatch
 set matchtime=0
 set helpheight=10
 set list
-set listchars=tab:▸\ ,trail:-,nbsp:%,extends:>,precedes:<
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
 set scrolloff=8
@@ -55,6 +54,7 @@ set noerrorbells
 set display=lastline
 set textwidth=0
 set pumheight=10
+set nofoldenable
 
 " dein.vimの設定
 " -------------------------------------
@@ -99,17 +99,41 @@ autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile Podfile set filetype=ruby
 autocmd BufRead,BufNewFile Fastfile set filetype=ruby
 autocmd BufRead,BufNewFile *.sil set filetype=sil
+autocmd BufRead,BufNewFile *.ll set filetype=llvm
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType sh set shiftwidth=2
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType html set shiftwidth=2
+autocmd FileType tex set shiftwidth=2
 autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType markdown inoremap $ $$<ESC>i
 autocmd FileType haskell nnoremap <C-t> :GhcModType<CR>
+autocmd FileType sil nnoremap <C-t> :SwiftDemangle<CR>
+autocmd FileType llvm nnoremap <C-t> :SwiftDemangle<CR>
 
 autocmd InsertLeave * set nopaste
+
+let g:quickrun_config['tex'] = {
+\ 'command' : 'latexmk',
+\ 'outputter' : 'error',
+\ 'outputter/error/success' : 'null',
+\ 'outputter/error/error' : 'quickfix',
+\ 'srcfile' : expand("%"),
+\ 'cmdopt': '-pdfdvi',
+\ 'hook/sweep/files' : [
+\                      '%S:p:r.aux',
+\                      '%S:p:r.bbl',
+\                      '%S:p:r.blg',
+\                      '%S:p:r.dvi',
+\                      '%S:p:r.fdb_latexmk',
+\                      '%S:p:r.fls',
+\                      '%S:p:r.log',
+\                      '%S:p:r.out'
+\                      ],
+\ 'exec': '%c %o %a %s',
+\}
 
 nnoremap <C-e> :QuickRun<CR>
 nnoremap <C-c> :<C-u>bw! \[quickrun\ output\]<CR>

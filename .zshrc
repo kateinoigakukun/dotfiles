@@ -15,6 +15,7 @@ export SAVEHIST=100000
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
+if which nodeenv > /dev/null; then eval "$(nodenv init -)"; fi
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
@@ -86,6 +87,7 @@ function zshexit() {
     ps -ax|grep peco|grep -v grep|awk '{ print $1 }'|xargs kill
 }
 
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 zle -N zle-line-init
@@ -101,6 +103,14 @@ bindkey '^r' peco-history-selection
 bindkey -a '^k' peco-kill
 bindkey '^k' peco-kill
 bindkey "^?" backward-delete-char
+
+function git(){hub "$@"}
+
+export SWIFTC_DEV_BIN=/Users/yuutas4/projects/swift-source/build/Xcode-DebugAssert/swift-macosx-x86_64/Debug/bin
+
+function swiftcdev() {
+    export PATH="$SWIFTC_DEV_BIN:$PATH"
+}
 
 if [ ! -n "$TMUX" ]; then
     select-attach-tmux
