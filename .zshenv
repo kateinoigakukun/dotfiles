@@ -10,7 +10,9 @@ export GOPATH=$HOME/.go
 export DOTFILE_PATH=$HOME/dotfiles
 
 path=(
+    $($HOME/.local/bin/stack path --compiler-bin)(N-/)
     /usr/local/opt/libiconv/bin(N-/)
+    $HOME/.local/bin(N-/)
     $HOME/.cabal/bin(N-/)
     $PYENV_ROOT/bin(N-/)
     $path

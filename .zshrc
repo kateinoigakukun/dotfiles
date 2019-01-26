@@ -5,6 +5,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt hist_ignore_dups
 setopt extended_history
+setopt share_history
 setopt no_beep
 setopt correct
 export HISTSIZE=1000

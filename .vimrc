@@ -107,6 +107,7 @@ autocmd FileType javascript set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType html set shiftwidth=2
 autocmd FileType tex set shiftwidth=2
+autocmd FileType markdown set shiftwidth=2
 autocmd FileType python setlocal omnifunc=jedi#completions
 autocmd FileType markdown inoremap $ $$<ESC>i
 autocmd FileType haskell nnoremap <C-t> :GhcModType<CR>

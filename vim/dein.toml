@@ -13,6 +13,7 @@ repo = 'Shougo/neoyank.vim'
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
+    let g:deoplete#enable_at_startup = 1
     inoremap <silent> <CR> <C-r>=<SID>neocomplete_cr_function()<CR>
     function! s:neocomplete_cr_function()
       return pumvisible() ? "\<C-y>" : "\<CR>"
