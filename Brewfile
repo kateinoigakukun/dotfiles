@@ -16,6 +16,7 @@ brew "zplug"
 brew "zsh"
 brew "zsh-completions"
 brew "kylef/formulae/swiftenv"
+brew "hub"
 cask "alfred"
 mas "Slack", id: 803453959
 mas "Spark", id: 1176895641
