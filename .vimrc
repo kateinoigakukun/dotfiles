@@ -53,9 +53,6 @@ set nofoldenable
 filetype plugin indent on
 execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
 
-" -------------------------------------
-" themeの設定
-" -------------------------------------
 syntax enable
 set t_Co=256
 
@@ -85,9 +82,3 @@ autocmd FileType haskell nnoremap <C-t> :GhcModType<CR>
 autocmd FileType sil nnoremap <C-t> :SwiftDemangle<CR>
 autocmd FileType llvm nnoremap <C-t> :SwiftDemangle<CR>
 
-autocmd InsertLeave * set nopaste
-
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
