@@ -51,6 +51,7 @@ set pumheight=10
 set nofoldenable
 
 filetype plugin indent on
+execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
 
 " -------------------------------------
 " themeの設定
@@ -62,7 +63,6 @@ let g:deoplete#enable_at_startup = 1
 let g:unite_enable_start_insert=1
 let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
-execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
 
 " Recommended key-mappings.
 
@@ -87,8 +87,6 @@ autocmd FileType llvm nnoremap <C-t> :SwiftDemangle<CR>
 
 autocmd InsertLeave * set nopaste
 
-nnoremap <C-e> :QuickRun<CR>
-nnoremap <C-c> :<C-u>bw! \[quickrun\ output\]<CR>
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>

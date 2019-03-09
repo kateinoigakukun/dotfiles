@@ -2,7 +2,7 @@ zplug "plugins/git", from:oh-my-zsh
 zplug "jhawthorn/fzy", \
     as:command, \
     hook-build:"make && sudo make install"
-zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'mafredri/zsh-async'
 zplug 'sindresorhus/pure', use:pure.zsh
 zplug "b4b4r07/enhancd", use:init.sh
