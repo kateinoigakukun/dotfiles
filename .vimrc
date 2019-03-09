@@ -1,11 +1,5 @@
-" -------------------------------------
-"  vimのオプション
-" -------------------------------------
 set number
 set ruler
-"重くなる要因 無くても困らない
-"set cursorline
-"set cursorcolumn
 set laststatus=2
 set statusline=2
 set cmdheight=2
@@ -56,31 +50,6 @@ set textwidth=0
 set pumheight=10
 set nofoldenable
 
-" dein.vimの設定
-" -------------------------------------
-let s:plugin_dir = expand('~/.vim/dein/')
-let s:toml_dir = expand('$DOTFILE_PATH/vim')
-let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
-
-" dein.vimがないときはgit cloneする
-if !isdirectory(s:dein_dir)
-  call mkdir(s:dein_dir, 'p')
-  silent execute printf('!git clone %s %s', 'https://github.com/Shougo/dein.vim', s:dein_dir)
-endif
-
-execute 'set runtimepath^=' . s:dein_dir
-execute 'set runtimepath^=' . expand('~/projects/')
-
-call dein#begin(s:plugin_dir)
-call dein#load_toml(s:toml_dir . '/dein.toml', {'lazy': 0})
-call dein#load_toml(s:toml_dir . '/dein_lazy.toml', {'lazy': 1})
-call dein#end()
-call dein#save_state()
-
-if dein#check_install()
-  call dein#install()
-endif
-
 filetype plugin indent on
 
 " -------------------------------------
@@ -115,26 +84,6 @@ autocmd FileType sil nnoremap <C-t> :SwiftDemangle<CR>
 autocmd FileType llvm nnoremap <C-t> :SwiftDemangle<CR>
 
 autocmd InsertLeave * set nopaste
-
-let g:quickrun_config['tex'] = {
-\ 'command' : 'latexmk',
-\ 'outputter' : 'error',
-\ 'outputter/error/success' : 'null',
-\ 'outputter/error/error' : 'quickfix',
-\ 'srcfile' : expand("%"),
-\ 'cmdopt': '-pdfdvi',
-\ 'hook/sweep/files' : [
-\                      '%S:p:r.aux',
-\                      '%S:p:r.bbl',
-\                      '%S:p:r.blg',
-\                      '%S:p:r.dvi',
-\                      '%S:p:r.fdb_latexmk',
-\                      '%S:p:r.fls',
-\                      '%S:p:r.log',
-\                      '%S:p:r.out'
-\                      ],
-\ 'exec': '%c %o %a %s',
-\}
 
 nnoremap <C-e> :QuickRun<CR>
 nnoremap <C-c> :<C-u>bw! \[quickrun\ output\]<CR>
