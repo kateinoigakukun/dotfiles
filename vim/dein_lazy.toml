@@ -50,7 +50,8 @@ repo = 'kateinoigakukun/swift-demangle-vim'
 on_ft = ['sil', 'llvm']
 hook_add = '''
     let g:swift_demangle#options = ['-compact']
-    let g:swift_demangle#swift_path = expand('$HOME/.swiftenv/shims/swift')
+    "let g:swift_demangle#swift_path = expand('$HOME/.swiftenv/shims/swift')
+    let g:swift_demangle#swift_path = expand('$HOME/projects/swift-source/build/Xcode-DebugAssert/swift-macosx-x86_64/Debug/bin/swift')
 '''
 
 [[plugins]]
