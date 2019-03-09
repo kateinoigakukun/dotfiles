@@ -11,24 +11,11 @@ setopt correct
 export HISTSIZE=1000
 export SAVEHIST=100000
 
-
-# env
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which swiftenv > /dev/null; then eval "$(swiftenv init -)"; fi
-if which nodeenv > /dev/null; then eval "$(nodenv init -)"; fi
-
 if [ ! -d $ZPLUG_HOME ]; then
     git clone https://github.com/b4b4r07/zplug.git $ZPLUG_HOME
 fi
+export ZPLUG_LOADFILE=~/dotfiles/zsh/zplug.zsh
 source ~/.zplug/init.zsh
-
-zplug "plugins/git", from:oh-my-zsh
-zplug 'zsh-users/zsh-syntax-highlighting'
-zplug 'mafredri/zsh-async'
-zplug 'sindresorhus/pure', use:pure.zsh
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "zsh-users/zsh-completions"
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "

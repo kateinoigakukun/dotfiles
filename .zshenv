@@ -18,7 +18,4 @@ path=(
     $path
 )
 
-
 alias rm=trash
-alias vim=nvim
-alias vi=nvim
