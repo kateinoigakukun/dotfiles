@@ -24,7 +24,7 @@ if ! zplug check --verbose; then
   fi
 fi
 
-zplug load --verbose
+zplug load
 
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
