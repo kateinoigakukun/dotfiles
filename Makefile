@@ -15,17 +15,6 @@ install-brew-package:
 install-zplug:
 	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
-install-font:
-	@echo "\033[32mInstalling Powerline fonts.\033[0m"
-	@if [ ! -e ./fonts ]; then \
-		mkdir ./fonts;\
-	fi
-	@cd fonts && { \
-		curl -LO "https://github.com/powerline/fonts/raw/master/DroidSansMono/Droid%20Sans%20Mono%20for%20Powerline.otf"; \
-		cd - ;\
-	}
-	@cp ./fonts/* ~/Library/Fonts
-
 change-shell:
 	@echo "\033[32mChange default shell to zsh...\033[0m"
 	@if [ ! `grep /usr/local/bin/zsh /etc/shells` ]; then \
@@ -51,4 +40,4 @@ link-config:
 		ln -snfv "$$HOME/dotfiles/config/$$config" "$$HOME/.config/$$config"; \
 	done
 
-deploy: install-brew install-brew-package install-font change-shell link-dotfiles link-config
+deploy: install-brew install-brew-package change-shell link-dotfiles link-config
