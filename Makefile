@@ -12,9 +12,6 @@ install-brew-package:
 	@echo "\033[32mInstalling Homebrew Packages...\033[0m"
 	brew bundle
 
-install-zplug:
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
 change-shell:
 	@echo "\033[32mChange default shell to zsh...\033[0m"
 	@if [ ! `grep /usr/local/bin/zsh /etc/shells` ]; then \
