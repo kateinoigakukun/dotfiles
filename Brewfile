@@ -3,7 +3,6 @@ tap "homebrew/bundle"
 tap "caskroom/cask"
 tap "neovim/neovim"
 brew "neovim"
-brew "peco"
 brew "pyenv"
 brew "rbenv", args: ["HEAD"]
 brew "trash"
