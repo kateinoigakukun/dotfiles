@@ -8,9 +8,9 @@ export PGDATA=/usr/local/var/postgres
 export PYENV_ROOT=$HOME/.pyenv
 export GOPATH=$HOME/.go
 export DOTFILE_PATH=$HOME/dotfiles
+export ZPLUG_HOME=$HOME/.zplug
 
 path=(
-    $(/usr/local/bin/stack path --compiler-bin)(N-/)
     /usr/local/opt/libiconv/bin(N-/)
     $HOME/.local/bin(N-/)
     $HOME/.cabal/bin(N-/)
