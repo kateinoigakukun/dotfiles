@@ -10,7 +10,15 @@ endif
 
 install-brew-package:
 	@echo "\033[32mInstalling Homebrew Packages...\033[0m"
-	brew bundle
+	brew bundle --file=./Brewfile
+
+install-cask:
+	@echo "\033[32mInstalling Homebrew Cask Packages...\033[0m"
+	brew bundle --file=./Brewfile-cask
+
+install-neovim:
+	brew install neovim
+	pip install neovim
 
 change-shell:
 	@echo "\033[32mChange default shell to zsh...\033[0m"
@@ -37,4 +45,4 @@ link-config:
 		ln -snfv "$$HOME/dotfiles/config/$$config" "$$HOME/.config/$$config"; \
 	done
 
-deploy: install-brew install-brew-package change-shell link-dotfiles
+deploy: install-brew install-brew-package install-neovim change-shell link-dotfiles
