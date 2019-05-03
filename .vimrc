@@ -10,7 +10,6 @@ set scrolloff=8
 set sidescrolloff=16
 set sidescroll=1
 set wrap
-set hidden
 set confirm
 set autoread
 set nobackup
@@ -20,25 +19,15 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set wrapscan
-set gdefault
-set expandtab
-set tabstop=2
-set shiftwidth=4
-set softtabstop=2
 set autoindent
 set smartindent
+set shiftwidth=2
 set clipboard=unnamed
 set clipboard+=unnamedplus
-set mouse=n
-set shellslash
 set wildmenu
-set wildignorecase
-set wildmode=list:longest,full
-set history=10000
 set visualbell
 set timeout timeoutlen=0
-"  ビープ音を消す
+"  Ignore beep
 set t_vb=
 set noerrorbells
 
@@ -54,7 +43,6 @@ syntax enable
 set t_Co=256
 
 let g:unite_enable_start_insert=1
-
 
 " Recommended key-mappings.
 
