@@ -53,9 +53,7 @@ execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
 syntax enable
 set t_Co=256
 
-let g:deoplete#enable_at_startup = 1
 let g:unite_enable_start_insert=1
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
 
 " Recommended key-mappings.
