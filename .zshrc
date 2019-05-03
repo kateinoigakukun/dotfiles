@@ -14,8 +14,8 @@ export SAVEHIST=100000
 if [ ! -d $ZPLUG_HOME ]; then
     git clone https://github.com/b4b4r07/zplug.git $ZPLUG_HOME
 fi
-export ZPLUG_LOADFILE=~/dotfiles/zsh/zplug.zsh
-source ~/.zplug/init.zsh
+export ZPLUG_LOADFILE=$HOME/dotfiles/zsh/zplug.zsh
+source $HOME/.zplug/init.zsh
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -26,6 +26,6 @@ fi
 
 zplug load
 
-if [[ -f ~/.zshrc.local ]]; then
-    source ~/.zshrc.local
+if [[ -f $HOME/.zshrc.local ]]; then
+    source $HOME/.zshrc.local
 fi
