@@ -2,24 +2,6 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
-hook_add = '''
-    nnoremap <C-g> :GitGutterLineHighlightsToggle<CR>
-'''
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-
-[[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
     let g:NERDTreeShowHidden = 1
