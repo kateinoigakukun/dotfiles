@@ -37,4 +37,4 @@ link-config:
 		ln -snfv "$$HOME/dotfiles/config/$$config" "$$HOME/.config/$$config"; \
 	done
 
-deploy: install-brew install-brew-package change-shell link-dotfiles link-config
+deploy: install-brew install-brew-package change-shell link-dotfiles
