@@ -1,11 +1,8 @@
 set number
-set ruler
 set laststatus=2
-set statusline=2
 set cmdheight=2
 set showmatch
-set matchtime=0
-set helpheight=10
+set matchtime=1
 set list
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]

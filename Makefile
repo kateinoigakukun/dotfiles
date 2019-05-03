@@ -45,4 +45,4 @@ link-config:
 		ln -snfv "$$HOME/dotfiles/config/$$config" "$$HOME/.config/$$config"; \
 	done
 
-deploy: install-brew install-brew-package install-neovim change-shell link-dotfiles
+deploy: install-brew install-brew-package install-neovim change-shell link-dotfiles link-config
