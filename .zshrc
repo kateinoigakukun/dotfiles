@@ -26,6 +26,7 @@ fi
 
 zplug load
 
-if [[ -f $HOME/.zshrc.local ]]; then
-    source $HOME/.zshrc.local
+ZSHRC_LOCAL=$HOME/.zshrc.local
+if [[ -e $ZSHRC_LOCAL ]]; then
+    source $ZSHRC_LOCAL
 fi

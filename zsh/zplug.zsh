@@ -13,4 +13,4 @@ if zplug check "b4b4r07/zsh-history-ltsv"; then
     ZSH_HISTORY_KEYBIND_GET_ALL="^r^a"
 fi
 zplug "zsh-users/zsh-completions"
-zplug "~/dotfiles/zsh/functions", from:local, use:"*.zsh"
+zplug "${HOME}/dotfiles/zsh/functions", from:local, use:"*.zsh"
