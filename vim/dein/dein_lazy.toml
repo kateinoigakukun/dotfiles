@@ -1,40 +1,6 @@
 [[plugins]]
-repo = 'kateinoigakukun/deoplete-swift'
-on_ft = 'swifhook_sourcet'
-hook_source = '''
-    let g:deoplete#sources#swift#source_kitten_binary = '/usr/local/bin/sourcekitten'
-    let g:deoplete#sources#swift#daemon_autostart = 1
-    let g:deoplete#sources#swift#sdk = '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
-    let g:deoplete#sources#swift#target = 'arm64-apple-ios10.0'
-'''
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-if = '!has("nvim")'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = '!has("nvim")'
-
-[[plugins]]
-repo = 'fishbullet/deoplete-ruby'
-on_ft = 'ruby'
-
-[[plugins]]
-repo = 'davidhalter/jedi-vim'
-if = "!has('nvim')"
-on_ft = 'python'
-hook_source = '''
-    let g:jedi#force_py_version = 3
-    let g:jedi#completions_enabled = 1
-    let g:jedi#auto_vim_configuration = 1
-'''
-
-
-[[plugins]]
 repo = 'keith/swift.vim'
 on_ft = 'swift'
-
 
 [[plugins]]
 repo = 'apple/swift'
@@ -50,25 +16,8 @@ repo = 'kateinoigakukun/swift-demangle-vim'
 on_ft = ['sil', 'llvm']
 hook_add = '''
     let g:swift_demangle#options = ['-compact']
-    "let g:swift_demangle#swift_path = expand('$HOME/.swiftenv/shims/swift')
-    let g:swift_demangle#swift_path = expand('$HOME/projects/swift-source/build/Xcode-DebugAssert/swift-macosx-x86_64/Debug/bin/swift')
+    let g:swift_demangle#swift_path = expand('$HOME/.swiftenv/shims/swift')
 '''
-
-[[plugins]]
-repo = 'slim-template/vim-slim'
-on_ft = 'slim'
-
-[[plugins]]
-repo = 'kchmck/vim-coffee-script'
-on_ft = 'coffee'
-
-[[plugins]]
-repo = 'dag/vim-fish'
-on_ft = 'fish'
-
-[[plugins]]
-repo = 'posva/vim-vue'
-on_ft = 'vue'
 
 [[plugins]]
 repo = 'cespare/vim-toml'
@@ -108,27 +57,12 @@ repo = 'tpope/vim-surround'
 on_i = 1
 
 [[plugins]]
-repo = 'tpope/vim-rails'
-on_ft = 'ruby'
-
-[[plugins]]
 repo = 'godlygeek/tabular'
 on_i = 1
 
 [[plugins]]
 repo = 'ujihisa/neco-ghc'
 on_ft = 'haskell'
-
-[[plugins]]
-repo = 'eagletmt/ghcmod-vim'
-on_ft = 'haskell'
-
-[[plugins]]
-repo = 'mattn/webapi-vim'
-
-[[plugins]]
-repo = 'mattn/emmet-vim'
-on_ft = 'html'
 
 [[plugins]]
 repo = 'lervag/vimtex'

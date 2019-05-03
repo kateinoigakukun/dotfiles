@@ -10,3 +10,10 @@ hook_add = '''
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 '''
 
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+on_ft = 'ruby'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+

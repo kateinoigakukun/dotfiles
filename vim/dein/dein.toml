@@ -20,26 +20,6 @@ hook_add = '''
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
-repo = 'connorholyday/vim-snazzy'
-
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-    let g:lightline = {
-    \   'component_function': {
-    \       'filename': 'LightlineFilename',
-    \   },
-    \ }
-
-    function! LightlineFilename()
-      return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-            \ &filetype ==# 'unite' ? unite#get_status_string() :
-            \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-            \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-    endfunction
-'''
-
-[[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
     let g:NERDTreeShowHidden = 1
