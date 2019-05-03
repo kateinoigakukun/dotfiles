@@ -44,8 +44,6 @@ set t_Co=256
 
 let g:unite_enable_start_insert=1
 
-" Recommended key-mappings.
-
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile Podfile set filetype=ruby
 autocmd BufRead,BufNewFile Fastfile set filetype=ruby
