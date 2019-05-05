@@ -3,6 +3,10 @@ repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = '''
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+'''
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
