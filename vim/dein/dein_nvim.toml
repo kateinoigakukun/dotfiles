@@ -1,20 +1,4 @@
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-    let g:deoplete#enable_at_startup = 1
-    inoremap <silent> <CR> <C-r>=<SID>neocomplete_cr_function()<CR>
-    function! s:neocomplete_cr_function()
-      return pumvisible() ? "\<C-y>" : "\<CR>"
-    endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-'''
-
-[[plugins]]
-repo = 'fishbullet/deoplete-ruby'
-on_ft = 'ruby'
-
-[[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 
 [[plugins]]
