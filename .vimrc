@@ -21,7 +21,7 @@ set ignorecase
 set smartcase
 set autoindent
 set smartindent
-set shiftwidth=2
+set shiftwidth=4
 set clipboard=unnamed
 set clipboard+=unnamedplus
 set wildmenu
@@ -35,14 +35,14 @@ set display=lastline
 set textwidth=0
 set pumheight=10
 set nofoldenable
+"  Disable matchparen for performance
+let g:loaded_matchparen = 1
 
 filetype plugin indent on
 execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
 
 syntax enable
 set t_Co=256
-
-let g:unite_enable_start_insert=1
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile Podfile set filetype=ruby
@@ -62,4 +62,7 @@ autocmd FileType markdown inoremap $ $$<ESC>i
 autocmd FileType haskell nnoremap <C-t> :GhcModType<CR>
 autocmd FileType sil nnoremap <C-t> :SwiftDemangle<CR>
 autocmd FileType llvm nnoremap <C-t> :SwiftDemangle<CR>
+autocmd FileType swift set expandtab
+autocmd FileType swift setlocal omnifunc=lsp#complete
 
+execute 'source' expand('$HOME/.vimrc.local')

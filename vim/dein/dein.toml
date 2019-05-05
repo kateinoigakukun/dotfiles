@@ -26,4 +26,3 @@ hook_add = '''
 
 [[plugins]]
 repo = 'jiangmiao/auto-pairs'
-

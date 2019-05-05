@@ -15,6 +15,7 @@ call dein#load_toml(s:toml_dir . '/dein_lazy.toml', {'lazy': 1})
 if has('nvim')
   call dein#load_toml(s:toml_dir . '/dein_nvim.toml', {'lazy': 0})
 endif
+call dein#load_toml(s:toml_dir . '/dein_local.toml', {'lazy': 0})
 call dein#end()
 call dein#save_state()
 
