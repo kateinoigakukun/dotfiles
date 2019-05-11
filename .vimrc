@@ -65,4 +65,7 @@ autocmd FileType llvm nnoremap <C-t> :SwiftDemangle<CR>
 autocmd FileType swift set expandtab
 autocmd FileType swift setlocal omnifunc=lsp#complete
 
-execute 'source' expand('$HOME/.vimrc.local')
+let s:local_vimrc = expand('$HOME/.vimrc.local')
+if filereadable(s:local_vimrc)
+  execute 'source' s:local_vimrc
+endif
