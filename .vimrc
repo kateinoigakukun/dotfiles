@@ -52,6 +52,7 @@ autocmd BufRead,BufNewFile *.ll set filetype=llvm
 autocmd FileType yaml set shiftwidth=2
 autocmd FileType ruby set shiftwidth=2
 autocmd FileType sh set shiftwidth=2
+autocmd FileType c set shiftwidth=2
 autocmd FileType javascript set shiftwidth=2
 autocmd FileType json set shiftwidth=2
 autocmd FileType html set shiftwidth=2
