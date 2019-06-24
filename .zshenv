@@ -18,4 +18,3 @@ path=(
     $path
 )
 
-alias rm=trash
