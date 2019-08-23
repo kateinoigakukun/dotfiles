@@ -28,15 +28,7 @@ change-shell:
 	@chsh -s /usr/local/bin/zsh
 
 link-dotfiles:
-	@echo "\033[32mMake dotfile symlinks...\033[0m"
-	@dotfiles=(.vimrc .zshrc .zshenv .tmux.conf .vimperatorrc .gemrc .gitconfig); \
-	for file in $${dotfiles[@]}; do \
-		ln -snfv "$$HOME/dotfiles/$$file" "$$HOME/$$file"; \
-	done
-	@if [ ! -e $$HOME/.config/nvim ]; then \
-		mkdir -p $$HOME/.config/nvim;\
-	fi
-	ln -snfv "$$HOME/dotfiles/.vimrc" "$$HOME/.config/nvim/init.vim"; \
+	./scripts/link-dotfiles
 
 link-config:
 	@echo "\033[32mMake config symlinks...\033[0m"
