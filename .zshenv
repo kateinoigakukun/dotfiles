@@ -12,6 +12,7 @@ export ZPLUG_HOME=$HOME/.zplug
 
 path=(
     /usr/local/opt/libiconv/bin(N-/)
+    /usr/local/opt/llvm/bin(N-/)
     $HOME/.local/bin(N-/)
     $HOME/.cabal/bin(N-/)
     $PYENV_ROOT/bin(N-/)
