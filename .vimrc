@@ -3,12 +3,8 @@ set laststatus=2
 set cmdheight=2
 set showmatch
 set matchtime=1
-set list
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
-set scrolloff=8
-set sidescrolloff=16
-set sidescroll=1
 set wrap
 set confirm
 set autoread
