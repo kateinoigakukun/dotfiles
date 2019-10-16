@@ -4,4 +4,4 @@
 [http]
 	sslVerify = true
 [core]
-	editor = nvim
+	editor = vim
