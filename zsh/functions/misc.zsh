@@ -7,3 +7,5 @@ ITERM2_INTEGRATION=${HOME}/.iterm2_shell_integration.zsh
 if [[ -e "${ITERM2_INTEGRATION}" ]]; then
   source "${ITERM2_INTEGRATION}"
 fi
+
+alias ghqcd='cd $(ghq root)/$(ghq list | fzy)'
