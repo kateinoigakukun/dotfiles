@@ -1,0 +1,12 @@
+[submodule "zsh/third_party/zsh-syntax-highlighting"]
+	path = zsh/third_party/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "zsh/third_party/pure"]
+	path = zsh/third_party/pure
+	url = https://github.com/sindresorhus/pure
+[submodule "zsh/third_party/zsh-async"]
+	path = zsh/third_party/zsh-async
+	url = https://github.com/mafredri/zsh-async
+[submodule "zsh/third_party/zsh-completions"]
+	path = zsh/third_party/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions

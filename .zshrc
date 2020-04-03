@@ -28,3 +28,7 @@ fi
 if [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
   zcompile $HOME/.zshrc
 fi
+
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi

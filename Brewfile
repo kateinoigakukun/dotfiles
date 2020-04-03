@@ -1,7 +1,5 @@
 tap "homebrew/core"
 tap "homebrew/bundle"
-brew "pyenv"
 brew "rbenv"
-brew "goenv"
-brew "trash"
 brew "zsh"
+brew "peco"
