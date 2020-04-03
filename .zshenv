@@ -1,5 +1,3 @@
-zmodload zsh/zprof && zprof
-
 export TERM="xterm-256color"
 export EDITOR=/usr/local/bin/nvim
 export HISTFILE=${HOME}/.zsh_history
@@ -10,7 +8,6 @@ export PGDATA=/usr/local/var/postgres
 export PYENV_ROOT=$HOME/.pyenv
 export GOENV_ROOT=$HOME/.goenv
 export DOTFILE_PATH=$HOME/dotfiles
-export ZPLUG_HOME=$HOME/.zplug
 
 path=(
     /usr/local/opt/libiconv/bin(N-/)
