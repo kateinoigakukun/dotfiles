@@ -8,4 +8,4 @@ if [[ -e "${ITERM2_INTEGRATION}" ]]; then
   source "${ITERM2_INTEGRATION}"
 fi
 
-alias ghqcd='cd $(ghq root)/$(ghq list | fzy)'
+alias sd='cd $(ghq root)/$(ghq list | fzy)'

@@ -23,3 +23,8 @@ ZSHRC_LOCAL=$HOME/.zshrc.local
 if [[ -e $ZSHRC_LOCAL ]]; then
     source $ZSHRC_LOCAL
 fi
+
+# Compile zshrc
+if [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
+  zcompile $HOME/.zshrc
+fi
