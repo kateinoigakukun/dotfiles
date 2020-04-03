@@ -8,4 +8,9 @@ if [[ -e "${ITERM2_INTEGRATION}" ]]; then
   source "${ITERM2_INTEGRATION}"
 fi
 
-alias sd='cd $(ghq root)/$(ghq list | fzy)'
+function __ghq_cd_repository() {
+    local repo=$(ghq list | fzy)
+    cd $(ghq root)/$repo
+}
+
+alias sd=__ghq_cd_repository
