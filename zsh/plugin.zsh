@@ -1,19 +1,20 @@
 zsh_dir=$DOTFILE_PATH/zsh
 
-function plug() {
-    source $zsh_dir/$1/*.zsh
+function plugin() {
+    source $zsh_dir/$1
 }
 
 function add_fpath() {
     fpath+=$zsh_dir/$1
 }
 
-plug 'third_party/zsh-syntax-highlighting'
-plug 'third_party/zsh-async'
-plug 'third_party/pure'
-plug 'third_party/zsh-completions'
-plug 'functions'
+plugin 'third_party/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
+plugin 'third_party/zsh-async/async.zsh'
+plugin 'functions/misc.zsh'
+plugin 'functions/trash.zsh'
+plugin 'functions/xenv.zsh'
 
+add_fpath 'third_party/zsh-completions'
 add_fpath 'third_party/pure'
 
 autoload -U promptinit; promptinit
