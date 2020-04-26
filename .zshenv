@@ -6,6 +6,7 @@ export SAVEHIST=100000
 export XDG_CONFIG_HOME=$HOME/.config
 export PGDATA=/usr/local/var/postgres
 export DOTFILE_PATH=$HOME/dotfiles
+export JAVA_HOME=$(/usr/libexec/java_home -v 14)
 
 path=(
     /usr/local/opt/libiconv/bin(N-/)
