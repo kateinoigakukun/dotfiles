@@ -9,7 +9,6 @@ function add_fpath() {
 }
 
 plugin 'third_party/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
-plugin 'third_party/zsh-async/async.zsh'
 plugin 'functions/misc.zsh'
 plugin 'functions/trash.zsh'
 plugin 'functions/xenv.zsh'
