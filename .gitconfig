@@ -5,6 +5,7 @@
 	sslVerify = true
 [core]
 	editor = vim
+	pager = delta --theme Dracula
 [diff]
 	tool = vimdiff
 [ghq]
