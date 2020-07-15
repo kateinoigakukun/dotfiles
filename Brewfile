@@ -1,5 +1,4 @@
 tap "homebrew/core"
 tap "homebrew/bundle"
-brew "rbenv"
 brew "zsh"
 brew "peco"
