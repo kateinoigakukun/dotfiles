@@ -11,3 +11,4 @@ echo "Make dotfile symlinks under ~/.config ..."
 mkdir -p $HOME/.config;
 
 ln -snfv "$HOME/dotfiles/config/nvim" "$HOME/.config";
+ln -snfv "$HOME/dotfiles/config/alacritty" "$HOME/.config";
