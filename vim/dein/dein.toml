@@ -4,9 +4,3 @@ hook_add = '''
     let g:NERDTreeShowHidden = 1
     nnoremap <C-o> :NERDTreeToggle<CR>
 '''
-
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
-
-[[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
