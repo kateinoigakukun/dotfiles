@@ -5,6 +5,9 @@ repo = 'prabirshrestha/asyncomplete.vim'
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
 let g:lsp_diagnostics_enabled = 1
