@@ -30,11 +30,4 @@ change-shell:
 link-dotfiles:
 	./scripts/link-dotfiles
 
-link-config:
-	@echo "\033[32mMake config symlinks...\033[0m"
-	@configs=$$(ls ./config); \
-	for config in $${configs[@]}; do \
-		ln -snfv "$$HOME/dotfiles/config/$$config" "$$HOME/.config/$$config"; \
-	done
-
-deploy: install-brew install-brew-package install-neovim change-shell link-dotfiles link-config
+deploy: install-brew install-brew-package install-neovim change-shell link-dotfiles
