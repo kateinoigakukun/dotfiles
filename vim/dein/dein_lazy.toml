@@ -63,7 +63,3 @@ on_i = 1
 [[plugins]]
 repo = 'ujihisa/neco-ghc'
 on_ft = 'haskell'
-
-[[plugins]]
-repo = 'lervag/vimtex'
-on_ft = 'tex'

@@ -1,5 +1,4 @@
 set backspace=indent,eol,start
-set wrap
 set confirm
 set autoread
 set directory=/tmp

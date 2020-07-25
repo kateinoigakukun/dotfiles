@@ -29,4 +29,20 @@ if executable('clangd')
     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
     \ })
 endif
+
+if executable('texlab')
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'texlab',
+    \ 'cmd': {server_info->['texlab']},
+    \ 'whitelist': ['tex'],
+    \ })
+endif
+
+if executable('rls')
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': {server_info->['rls']},
+    \ 'whitelist': ['rust'],
+    \ })
+endif
 '''
