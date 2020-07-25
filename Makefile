@@ -22,10 +22,10 @@ install-neovim:
 
 change-shell:
 	@echo "\033[32mChange default shell to zsh...\033[0m"
-	@if [ ! `grep /usr/local/bin/zsh /etc/shells` ]; then \
-			sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"; \
+	@if [ ! `grep /bin/zsh /etc/shells` ]; then \
+			sudo sh -c "echo '/bin/zsh' >> /etc/shells"; \
 	fi
-	@chsh -s /usr/local/bin/zsh
+	@chsh -s /bin/zsh
 
 link-dotfiles:
 	./scripts/link-dotfiles
