@@ -13,6 +13,7 @@ set clipboard=unnamed
 set wildmenu
 set pumheight=10
 set shiftwidth=2
+set nofoldenable
 
 filetype plugin indent on
 execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
