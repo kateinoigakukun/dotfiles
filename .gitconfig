@@ -9,3 +9,5 @@
 	tool = vimdiff
 [ghq]
 	root = ~/.ghq
+[merge]
+	conflictStyle = diff3
