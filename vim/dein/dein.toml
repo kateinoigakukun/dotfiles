@@ -14,6 +14,6 @@ repo = 'junegunn/fzf.vim'
 hook_add = '''
 nnoremap <C-p> :FZFFileList<CR>
 command! FZFFileList call fzf#run(fzf#wrap({
-            \ 'source': 'find . -type d -name .git -prune -o ! -name .DS_Store',
+            \ 'source': 'git ls-files',
             \ 'down': '40%'}))
 '''
