@@ -6,6 +6,7 @@ setopt correct
 
 # history
 setopt hist_ignore_all_dups
+export savehist=100000
 
 # use emacs keybind
 bindkey -e
