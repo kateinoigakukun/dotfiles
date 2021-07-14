@@ -12,3 +12,4 @@ mkdir -p $HOME/.config;
 
 ln -snfv "$HOME/dotfiles/config/nvim" "$HOME/.config";
 ln -snfv "$HOME/dotfiles/config/alacritty" "$HOME/.config";
+ln -snfv "$HOME/dotfiles/config/git" "$HOME/.config";
