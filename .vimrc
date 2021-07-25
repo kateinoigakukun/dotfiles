@@ -8,7 +8,6 @@ set ignorecase
 set smartcase
 set autoindent
 set smartindent
-set shiftwidth=4
 set clipboard=unnamed
 set wildmenu
 set pumheight=10
