@@ -7,6 +7,3 @@
 [submodule "zsh/third_party/zsh-async"]
 	path = zsh/third_party/zsh-async
 	url = https://github.com/mafredri/zsh-async
-[submodule "zsh/third_party/zsh-completions"]
-	path = zsh/third_party/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions

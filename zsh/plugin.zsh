@@ -13,7 +13,6 @@ plugin 'functions/misc.zsh'
 plugin 'functions/trash.zsh'
 plugin 'functions/xenv.zsh'
 
-add_fpath 'third_party/zsh-completions'
 add_fpath 'third_party/pure'
 export PURE_PROMPT_SYMBOL='$'
 
