@@ -1,4 +1,3 @@
-autoload -U compinit && compinit
 setopt auto_list
 setopt auto_menu
 setopt no_beep
@@ -29,3 +28,5 @@ fi
 if [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
   zcompile $HOME/.zshrc
 fi
+
+autoload -U compinit && compinit
