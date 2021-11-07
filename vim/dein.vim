@@ -27,3 +27,40 @@ if dein#check_install()
   call dein#install()
 endif
 
+if executable('sourcekit-lsp')
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'sourcekit-lsp',
+    \ 'cmd': {server_info->['sourcekit-lsp']},
+    \ 'whitelist': ['swift'],
+    \ })
+endif
+
+if executable('clangd')
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'clangd',
+    \ 'cmd': {server_info->['clangd', '-background-index']},
+    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+    \ })
+endif
+
+if executable('texlab')
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'texlab',
+    \ 'cmd': {server_info->['texlab']},
+    \ 'whitelist': ['tex'],
+    \ })
+endif
+
+if executable('rls')
+  autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'rls',
+    \ 'cmd': {server_info->['rls']},
+    \ 'whitelist': ['rust'],
+    \ })
+endif
+
+autocmd User lsp_setup call lsp#register_server({
+  \ 'name': 'typeprof',
+  \ 'cmd': {server_info->['rbenv', 'exec', 'ruby', '/Users/katei/.ghq/github.com/ruby/typeprof/exe/typeprof', '--lsp', '--stdio']},
+  \ 'whitelist': ['ruby'],
+  \ })

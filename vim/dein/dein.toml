@@ -6,10 +6,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'junegunn/fzf'
-build = './install --all'
-
-[[plugins]]
 repo = 'junegunn/fzf.vim'
 hook_add = '''
 nnoremap <C-p> :FZFFileList<CR>

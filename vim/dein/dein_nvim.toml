@@ -9,40 +9,50 @@ repo = 'prabirshrestha/async.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
-hook_add = '''
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-
-if executable('sourcekit-lsp')
-  autocmd User lsp_setup call lsp#register_server({
-    \ 'name': 'sourcekit-lsp',
-    \ 'cmd': {server_info->['sourcekit-lsp']},
-    \ 'whitelist': ['swift'],
-    \ })
-endif
-
-if executable('clangd')
-  autocmd User lsp_setup call lsp#register_server({
-    \ 'name': 'clangd',
-    \ 'cmd': {server_info->['clangd', '-background-index']},
-    \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-    \ })
-endif
-
-if executable('texlab')
-  autocmd User lsp_setup call lsp#register_server({
-    \ 'name': 'texlab',
-    \ 'cmd': {server_info->['texlab']},
-    \ 'whitelist': ['tex'],
-    \ })
-endif
-
-if executable('rls')
-  autocmd User lsp_setup call lsp#register_server({
-    \ 'name': 'rls',
-    \ 'cmd': {server_info->['rls']},
-    \ 'whitelist': ['rust'],
-    \ })
-endif
-'''
+# hook_add = '''
+# let g:lsp_diagnostics_enabled = 1
+# let g:lsp_signs_enabled = 1
+# let g:lsp_diagnostics_echo_cursor = 1
+# 
+# if executable('sourcekit-lsp')
+#   autocmd User lsp_setup call lsp#register_server({
+#     \ 'name': 'sourcekit-lsp',
+#     \ 'cmd': {server_info->['sourcekit-lsp']},
+#     \ 'whitelist': ['swift'],
+#     \ })
+# endif
+# 
+# if executable('clangd')
+#   autocmd User lsp_setup call lsp#register_server({
+#     \ 'name': 'clangd',
+#     \ 'cmd': {server_info->['clangd', '-background-index']},
+#     \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+#     \ })
+# endif
+# 
+# if executable('texlab')
+#   autocmd User lsp_setup call lsp#register_server({
+#     \ 'name': 'texlab',
+#     \ 'cmd': {server_info->['texlab']},
+#     \ 'whitelist': ['tex'],
+#     \ })
+# endif
+# 
+# if executable('rls')
+#   autocmd User lsp_setup call lsp#register_server({
+#     \ 'name': 'rls',
+#     \ 'cmd': {server_info->['rls']},
+#     \ 'whitelist': ['rust'],
+#     \ })
+# endif
+# 
+# let g:lsp_log_verbose = 1
+# let g:lsp_show_message_log_level = 'log'
+# let g:lsp_log_file = expand('~/vim-lsp.log')
+# 
+# autocmd User lsp_setup call lsp#register_server({
+#   \ 'name': 'typeprof',
+#   \ 'cmd': {server_info->['rbenv', 'exec', 'ruby', '/Users/katei/.ghq/github.com/ruby/typeprof/exe/typeprof', '--lsp', '--stdio']},
+#   \ 'whitelist': ['ruby'],
+#   \ })
+# '''
