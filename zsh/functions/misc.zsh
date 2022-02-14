@@ -6,4 +6,4 @@ function __ghq_cd_repository() {
     fi
 }
 
-alias sd=__ghq_cd_repository
+alias ghq-cd=__ghq_cd_repository
