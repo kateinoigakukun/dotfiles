@@ -29,6 +29,7 @@ augroup set_filetype
   autocmd BufRead,BufNewFile *.sil set filetype=sil
   autocmd BufRead,BufNewFile *.ll set filetype=llvm
   autocmd BufRead,BufNewFile *.swift set filetype=swift
+  autocmd BufRead,BufNewFile *.nix set filetype=nix
 augroup END
 
 let s:local_vimrc = expand('$HOME/.vimrc.local')
