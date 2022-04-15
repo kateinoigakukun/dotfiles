@@ -10,6 +10,7 @@
 	tool = vimdiff
 [ghq]
 	root = ~/.ghq
+	user = kateinoigakukun
 [merge]
 	conflictStyle = diff3
 [init]
