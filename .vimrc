@@ -14,6 +14,8 @@ set pumheight=10
 set shiftwidth=2
 set nofoldenable
 
+set grepprg=git\ grep\ -I\ --line-number
+
 filetype plugin indent on
 execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
 
