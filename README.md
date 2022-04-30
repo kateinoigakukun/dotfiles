@@ -2,6 +2,5 @@
 
 ```sh
 git clone https://github.com/kateinoigakukun/dotfiles.git
-cd dotfiles
-make deploy
+./dotfiles/scripts/link-dotfiles
 ```
