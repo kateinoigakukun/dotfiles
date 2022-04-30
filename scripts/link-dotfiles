@@ -1,15 +1,17 @@
 #!/bin/bash
+
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 echo "Make dotfile symlinks ..."
 
-dotfiles=(.vimrc .gvimrc .zshrc .zshenv .tmux.conf .gemrc .gitconfig);
+dotfiles=(.vimrc .zshrc .tmux.conf .gitconfig);
 for file in ${dotfiles[@]}; do
-  ln -snfv "$HOME/dotfiles/$file" "$HOME/$file";
+  ln -snfv "$DOTFILES_DIR/$file" "$HOME/$file";
 done
 
 echo "Make dotfile symlinks under ~/.config ..."
 
 mkdir -p $HOME/.config;
 
-ln -snfv "$HOME/dotfiles/config/nvim" "$HOME/.config";
-ln -snfv "$HOME/dotfiles/config/alacritty" "$HOME/.config";
-ln -snfv "$HOME/dotfiles/config/git" "$HOME/.config";
+ln -snfv "$DOTFILES_DIR/config/nvim" "$HOME/.config";
+ln -snfv "$DOTFILES_DIR/config/alacritty" "$HOME/.config";
+ln -snfv "$DOTFILES_DIR/config/git" "$HOME/.config";
