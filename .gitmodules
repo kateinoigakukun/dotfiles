@@ -7,3 +7,9 @@
 [submodule "zsh/third_party/zsh-async"]
 	path = zsh/third_party/zsh-async
 	url = https://github.com/mafredri/zsh-async
+[submodule "third-party/tmux-continuum"]
+	path = third-party/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git
+[submodule "third-party/tmux-resurrect"]
+	path = third-party/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
