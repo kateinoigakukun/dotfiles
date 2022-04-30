@@ -1,5 +1,5 @@
 function __ghq_cd_repository() {
-    local repo=$(ghq list | peco)
+    local repo=$(ghq list | fzf)
     if [ -n "$repo" ]; then
         echo $repo
         cd $(ghq root)/$repo
