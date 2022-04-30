@@ -47,17 +47,5 @@ repo = 'tyru/open-browser.vim'
 on_source = ['previm']
 
 [[plugins]]
-repo = 'tpope/vim-endwise'
-on_i = 1
-
-[[plugins]]
-repo = 'tpope/vim-surround'
-on_i = 1
-
-[[plugins]]
-repo = 'godlygeek/tabular'
-on_i = 1
-
-[[plugins]]
 repo = 'ujihisa/neco-ghc'
 on_ft = 'haskell'

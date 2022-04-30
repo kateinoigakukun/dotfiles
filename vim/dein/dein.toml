@@ -6,10 +6,25 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'junegunn/fzf'
+build_on = './install --bin'
+merged = false
+
+[[plugins]]
 repo = 'junegunn/fzf.vim'
+depends = 'fzf'
 hook_add = '''
 nnoremap <C-p> :FZFFileList<CR>
 command! FZFFileList call fzf#run(fzf#wrap({
             \ 'source': 'git ls-files',
             \ 'down': '40%'}))
 '''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'godlygeek/tabular'
