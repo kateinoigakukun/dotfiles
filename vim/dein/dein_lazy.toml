@@ -3,11 +3,6 @@ repo = 'keith/swift.vim'
 on_ft = 'swift'
 
 [[plugins]]
-repo = 'apple/swift'
-on_ft = 'sil'
-rtp = 'utils/vim'
-
-[[plugins]]
 repo = 'EdJoJob/llvmir-vim'
 on_ft = 'llvm'
 

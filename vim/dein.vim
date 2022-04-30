@@ -27,6 +27,11 @@ if dein#check_install()
   call dein#install()
 endif
 
+let s:swift_vim_utils_dir = expand('$LOCAL_SWIFT_SOURCE/utils/vim')
+if isdirectory(s:swift_vim_utils_dir)
+  execute 'set runtimepath^=' . s:swift_vim_utils_dir
+endif
+
 if executable('sourcekit-lsp')
   autocmd User lsp_setup call lsp#register_server({
     \ 'name': 'sourcekit-lsp',
