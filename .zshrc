@@ -5,7 +5,9 @@ setopt correct
 
 # history
 setopt hist_ignore_all_dups
-SAVEHIST=100000
+: ${SAVEHIST:=100000}
+
+: ${TERM:="xterm-256color"}
 
 # use emacs keybind
 bindkey -e
@@ -36,6 +38,8 @@ ITERM2_INTEGRATION=${HOME}/.iterm2_shell_integration.zsh
 if [[ -e "${ITERM2_INTEGRATION}" ]]; then
   source "${ITERM2_INTEGRATION}"
 fi
+
+/usr/share/doc/fzf/examples/completion.zsh
 
 source $DOTFILES_PATH/zsh/plugin.zsh
 
