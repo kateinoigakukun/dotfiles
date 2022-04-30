@@ -2,6 +2,7 @@ setopt AUTO_LIST
 setopt AUTO_MENU
 setopt NO_BEEP
 setopt CORRECT
+setopt PRINT_EXIT_VALUE
 
 __load_oneof() {
   for lib in $@; do
@@ -38,7 +39,9 @@ if type __git_ps1 > /dev/null 2>&1; then
   GIT_PS1_SHOWUNTRACKEDFILES=1
   GIT_PS1_SHOWSTASHSTATE=1
 fi
-PROMPT="$PROMPT\$ "
+
+RED_ON_NONZERO_EXIT=$'%(?..%{\e[1;31m%})$%{\e[m%}'
+PROMPT="$PROMPT$RED_ON_NONZERO_EXIT "
 
 # load iterm2 integration
 ITERM2_INTEGRATION=${HOME}/.iterm2_shell_integration.zsh
