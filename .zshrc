@@ -1,7 +1,7 @@
-setopt auto_list
-setopt auto_menu
-setopt no_beep
-setopt correct
+setopt AUTO_LIST
+setopt AUTO_MENU
+setopt NO_BEEP
+setopt CORRECT
 
 __load_oneof() {
   for lib in $@; do
@@ -11,8 +11,11 @@ __load_oneof() {
 }
 
 # history
-setopt hist_ignore_all_dups
-: ${SAVEHIST:=100000}
+setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+: ${HISTFILE:="$HOME/.zsh_history"}
+[[ "$SAVEHIST" = 0 ]] && SAVEHIST=100000
 
 # use emacs keybind
 bindkey -e
