@@ -22,7 +22,7 @@ done
 # allow to expand __git_ps1
 setopt PROMPT_SUBST
 # see the prompt format in zshmisc(1)
-PROMPT=$'%{\e[1;34m%}%C%{\e[m%}'
+PROMPT=$'%{\e[1;34m%}%1~%{\e[m%}'
 if type __git_ps1 > /dev/null 2>&1; then
   PROMPT="$PROMPT\$(__git_ps1)"
   GIT_PS1_SHOWDIRTYSTATE=1
