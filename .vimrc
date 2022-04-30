@@ -17,7 +17,11 @@ set nofoldenable
 set grepprg=git\ grep\ -I\ --line-number
 
 filetype plugin indent on
-execute 'source' expand('$DOTFILE_PATH') .'/vim/dein.vim'
+
+let s:plugin_script = expand('$DOTFILES_PATH') .'/vim/dein.vim'
+if filereadable(s:plugin_script)
+  execute 'source' s:plugin_script
+endif
 
 syntax enable
 

@@ -37,7 +37,7 @@ if [[ -e "${ITERM2_INTEGRATION}" ]]; then
   source "${ITERM2_INTEGRATION}"
 fi
 
-source $DOTFILE_PATH/zsh/plugin.zsh
+source $DOTFILES_PATH/zsh/plugin.zsh
 
 ZSHRC_LOCAL=$HOME/.zshrc.local
 if [[ -e $ZSHRC_LOCAL ]]; then

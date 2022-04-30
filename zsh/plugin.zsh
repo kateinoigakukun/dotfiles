@@ -1,4 +1,4 @@
-zsh_dir=$DOTFILE_PATH/zsh
+zsh_dir=$DOTFILES_PATH/zsh
 
 function plugin() {
     source $zsh_dir/$1

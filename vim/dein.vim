@@ -1,6 +1,6 @@
 let s:plugin_dir = expand('~/.vim/dein/')
 let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
-let s:toml_dir = expand('$DOTFILE_PATH/vim/dein')
+let s:toml_dir = expand('$DOTFILES_PATH/vim/dein')
 let s:nvim_dein = s:toml_dir . '/dein_nvim.toml'
 let s:local_dein = s:toml_dir . '/dein_local.toml'
 

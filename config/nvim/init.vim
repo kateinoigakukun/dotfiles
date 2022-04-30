@@ -1,5 +1,5 @@
 " Inherit .vimrc
-execute 'source' expand('$DOTFILE_PATH') .'/.vimrc'
+execute 'source' expand('$DOTFILES_PATH') .'/.vimrc'
 
 let s:pyenv_shims = expand('$PYENV_ROOT/shims/')
 if isdirectory(s:pyenv_shims)
