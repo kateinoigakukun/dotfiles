@@ -18,7 +18,7 @@ set grepprg=git\ grep\ -I\ --line-number
 
 filetype plugin indent on
 
-let s:plugin_script = expand('$DOTFILES_PATH') .'/vim/dein.vim'
+let s:plugin_script = expand('$DOTFILES_PATH') .'/vim/plugin.vim'
 if filereadable(s:plugin_script)
   execute 'source' s:plugin_script
 endif
