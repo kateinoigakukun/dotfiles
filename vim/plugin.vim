@@ -26,9 +26,7 @@ nnoremap <C-o> :NERDTreeToggle<CR>
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :FZFFileList<CR>
-command! FZFFileList call fzf#run(fzf#wrap({
-            \ 'source': 'git ls-files',
-            \ 'down': '40%'}))
+command! FZFFileList call fzf#run(fzf#wrap({ 'source': 'git ls-files' }))
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
