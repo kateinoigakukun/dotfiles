@@ -8,5 +8,5 @@ function add_fpath() {
     fpath+=$zsh_dir/$1
 }
 
-plugin 'functions/misc.zsh'
+plugin 'functions/ghq-cd.zsh'
 plugin 'functions/trash.zsh'
