@@ -42,6 +42,16 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_log_verbose = 1
 let g:lsp_show_message_log_level = 'log'
+inoremap <expr> <cr>  pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+inoremap <expr> <Tab> pumvisible() ? asyncomplete#close_popup() : "\<Tab>"
+
+function! s:on_lsp_buffer_enabled() abort
+  "note: avoid chattering by vim-lsp code action and diags
+  setlocal signcolumn=yes
+  setlocal omnifunc=lsp#complete
+endfunction
+
+autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 
 let s:swift_vim_utils_dir = expand('$LOCAL_SWIFT_SOURCE/utils/vim')
 if isdirectory(s:swift_vim_utils_dir)
