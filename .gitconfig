@@ -5,7 +5,6 @@
 	sslVerify = true
 [core]
 	editor = vim
-	excludesfile = ~/.config/git/.gitignore
 [diff]
 	tool = vimdiff
 [ghq]
