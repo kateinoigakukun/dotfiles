@@ -8,7 +8,6 @@ __load_oneof() {
   for lib in $@; do
     [[ -f "$lib" ]] && source "$lib" && break;
   done
-
 }
 
 # history
@@ -53,11 +52,14 @@ __load_oneof \
   /usr/share/doc/fzf/examples/key-bindings.zsh \
   /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 
-source $DOTFILES_PATH/zsh/plugin.zsh
+ZSH_PLUGINS="$DOTFILES_PATH/zsh/plugin.zsh"
+if [[ -e "$ZSH_PLUGINS" ]]; then
+  source $ZSH_PLUGINS
+fi
 
-ZSHRC_LOCAL=$HOME/.zshrc.local
+ZSHRC_LOCAL="$HOME/.zshrc.local"
 if [[ -e $ZSHRC_LOCAL ]]; then
-    source $ZSHRC_LOCAL
+  source $ZSHRC_LOCAL
 fi
 
 # Compile zshrc
