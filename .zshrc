@@ -50,7 +50,8 @@ fi
 
 __load_oneof \
   /usr/share/doc/fzf/examples/key-bindings.zsh \
-  /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+  /opt/homebrew/opt/fzf/shell/key-bindings.zsh \
+  /usr/local/opt/fzf/shell/key-bindings.zsh
 
 ZSH_PLUGINS="$DOTFILES_PATH/zsh/plugin.zsh"
 if [[ -e "$ZSH_PLUGINS" ]]; then
