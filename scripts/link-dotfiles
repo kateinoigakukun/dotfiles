@@ -16,4 +16,3 @@ ln -snfv "$DOTFILES_DIR/config/nvim" "$HOME/.config";
 ln -snfv "$DOTFILES_DIR/config/alacritty" "$HOME/.config";
 ln -snfv "$DOTFILES_DIR/config/git" "$HOME/.config";
 ln -snfv "$DOTFILES_PATH/vim/ftplugin" "$HOME/.vim"
-ln -snfv "$DOTFILES_PATH/vim/ftplugin" "$HOME/.config/nvim"
