@@ -2,7 +2,6 @@ setopt AUTO_LIST
 setopt AUTO_MENU
 setopt NO_BEEP
 setopt CORRECT
-setopt PRINT_EXIT_VALUE
 
 __load_oneof() {
   for lib in $@; do
