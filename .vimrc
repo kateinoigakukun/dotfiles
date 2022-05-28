@@ -13,6 +13,7 @@ set wildmenu
 set pumheight=10
 set shiftwidth=2
 set nofoldenable
+set expandtab
 
 set grepprg=git\ grep\ -I\ --line-number
 
