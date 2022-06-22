@@ -31,6 +31,7 @@ augroup set_filetype
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile Podfile set filetype=ruby
   autocmd BufRead,BufNewFile Fastfile set filetype=ruby
+  autocmd BufRead,BufNewFile .swift-build-presets set filetype=dosini
   autocmd BufRead,BufNewFile *.sil set filetype=sil
   autocmd BufRead,BufNewFile *.ll set filetype=llvm
   autocmd BufRead,BufNewFile *.swift set filetype=swift
