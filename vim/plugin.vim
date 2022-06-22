@@ -28,6 +28,9 @@ Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :FZFFileList<CR>
 command! FZFFileList call fzf#run(fzf#wrap({ 'source': 'git ls-files' }))
 
+Plug 'github/copilot.vim'
+let g:copilot_filetypes = { '*': v:true }
+
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
