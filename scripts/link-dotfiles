@@ -15,4 +15,6 @@ mkdir -p $HOME/.config;
 ln -snfv "$DOTFILES_DIR/config/nvim" "$HOME/.config";
 ln -snfv "$DOTFILES_DIR/config/alacritty" "$HOME/.config";
 ln -snfv "$DOTFILES_DIR/config/git" "$HOME/.config";
-ln -snfv "$DOTFILES_PATH/vim/ftplugin" "$HOME/.vim"
+
+mkdir -p "$HOME/.vim"
+ln -snfv "$DOTFILES_DIR/vim/ftplugin" "$HOME/.vim"
