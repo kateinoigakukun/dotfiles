@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# NOTICE: Original version was taken from https://gist.github.com/gottesmm/7640843e1332e135bef4a71c553be03a
+
 set -e
 
 if [[ $# -lt 1 ]]; then
