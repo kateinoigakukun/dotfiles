@@ -62,9 +62,18 @@ if [[ -e $ZSHRC_LOCAL ]]; then
   source $ZSHRC_LOCAL
 fi
 
+DOTFILES_LOCAL_BIN="$DOTFILES_PATH/local/bin"
+if [[ -d $DOTFILES_LOCAL_BIN ]]; then
+  export PATH="$DOTFILES_LOCAL_BIN:$PATH"
+fi
+
 # Compile zshrc
 if [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
   zcompile $HOME/.zshrc
 fi
 
 autoload -U compinit && compinit
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"

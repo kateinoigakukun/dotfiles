@@ -1,0 +1,50 @@
+#!/bin/bash
+
+set -e
+
+if [[ $# -lt 1 ]]; then
+    echo "Not enough arguments?!"
+    echo "$0 <hash1> ... <hashN>"
+    exit 1
+fi
+
+HASHES=( ${@:1} )
+
+echo "Checking if hashes exist."
+for h in "${HASHES[@]}"; do
+    echo -n "    "
+    if git cat-file -e ${h}^{commit}; then
+        echo "Good hash: ${h}"
+    else
+        echo "Bad hash: $HASH?!"
+        exit 1
+    fi
+done
+
+# We name the branch after the last hash.
+LAST_HASH=$(($# - 1))
+BRANCH_NAME="pr-${HASHES[LAST_HASH]}"
+OLD_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+BASE_BRANCH=
+if git branch -r | grep upstream/main; then
+  BASE_BRANCH=upstream/main
+elif git branch -r | grep origin/develop; then
+  BASE_BRANCH=origin/develop
+elif git branch -r | grep origin/main; then
+  BASE_BRANCH=origin/main
+else
+  BASE_BRANCH=upstream/master
+fi
+git branch -f "$BRANCH_NAME" "$BASE_BRANCH"
+git checkout "$BRANCH_NAME"
+for h in "${HASHES[@]}"; do
+    if ! git cherry-pick "${h}"; then
+        exit 1
+    fi
+done
+git push origin -f "$BRANCH_NAME:$BRANCH_NAME"
+git checkout "$OLD_BRANCH"
+git branch -D "$BRANCH_NAME"
+
+set +e

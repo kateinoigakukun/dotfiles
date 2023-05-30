@@ -1,0 +1,80 @@
+#!/bin/bash
+
+set -e
+
+if [[ $# -gt 1 ]]; then
+    echo "Too many commits"
+    echo "$0 <upstream rev>"
+    exit 1
+fi
+
+# Infer the upstream and downstream branches from the current branch
+
+UPSTREAM_REV="$1"
+DOWNSTREAM_BRANCH="$2"
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+infer_upstream_branch() {
+  # Respect the current branch if it's one of "main", or "release/x.x"
+  # Map "swiftwasm" to "main", and "swiftwasm/release/x.x" to "release/x.x"
+  if [[ "$CURRENT_BRANCH" =~ ^(main|release/[0-9]+\.[0-9]+)$ ]]; then
+    echo "$CURRENT_BRANCH"
+  elif [[ "$CURRENT_BRANCH" == "swiftwasm" ]]; then
+    echo "main"
+  elif [[ "$CURRENT_BRANCH" =~ ^swiftwasm-release/[0-9]+\.[0-9]+$ ]]; then
+    echo "${CURRENT_BRANCH#swiftwasm-/}"
+  elif [[ "$CURRENT_BRANCH" =~ ^$USER/merge-(main|release-[0-9]+\.[0-9]+)-.+$ ]]; then
+    echo "${BASH_REMATCH[1]/-//}"
+  else
+    echo "Could not infer upstream branch from current branch $CURRENT_BRANCH" 1>&2
+    exit 1
+  fi
+  return
+}
+
+infer_downstream_branch() {
+  # Respect the current branch if it's one of "swiftwasm", or "swiftwasm-release/x.x"
+  # Map "main" to "swiftwasm", and "release/x.x" to "swiftwasm-release/x.x"
+  if [[ "$CURRENT_BRANCH" =~ ^(swiftwasm|swiftwasm-release/[0-9]+\.[0-9]+)$ ]]; then
+    echo "$CURRENT_BRANCH"
+  elif [[ "$CURRENT_BRANCH" == "main" ]]; then
+    echo "swiftwasm"
+  elif [[ "$CURRENT_BRANCH" =~ ^release/[0-9]+\.[0-9]+$ ]]; then
+    echo "swiftwasm-$CURRENT_BRANCH"
+  elif [[ "$CURRENT_BRANCH" =~ ^$USER/merge-(main|release-[0-9]+\.[0-9]+)-[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    if [[ "${BASH_REMATCH[1]}" == "main" ]]; then
+      echo "swiftwasm"
+    else
+      echo "swiftwasm-${BASH_REMATCH[1]//-//}"
+    fi
+  else
+    echo "Could not infer downstream branch from current branch $CURRENT_BRANCH" 1>&2
+    exit 1
+  fi
+}
+
+if [[ -z "$UPSTREAM_REV" ]]; then
+  UPSTREAM_REV=$(infer_upstream_branch)
+fi
+
+if [[ -z "$DOWNSTREAM_BRANCH" ]]; then
+  DOWNSTREAM_BRANCH=$(infer_downstream_branch)
+fi
+
+TIMESTAMP="$(date +'%Y-%m-%d')"
+BRANCH_NAME="$USER/merge-${UPSTREAM_REV//\//-}-$TIMESTAMP"
+
+if [[ "$(git rev-parse --abbrev-ref HEAD)" != "$BRANCH_NAME" ]]; then
+  git fetch origin $UPSTREAM_REV
+  git branch -f "$BRANCH_NAME"
+  git checkout "$BRANCH_NAME"
+  git merge "origin/$UPSTREAM_REV"
+fi
+
+git push origin -f "$BRANCH_NAME:$BRANCH_NAME"
+# git checkout "$CURRENT_BRANCH"
+
+gh pr create --title "Merge $UPSTREAM_REV $TIMESTAMP" --head "$BRANCH_NAME" --base swiftwasm:$DOWNSTREAM_BRANCH --label ":arrow_heading_down: Upstream Tracking" --web
+
+set +e
