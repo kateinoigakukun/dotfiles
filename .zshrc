@@ -73,7 +73,3 @@ if [ $HOME/.zshrc -nt ~/.zshrc.zwc ]; then
 fi
 
 autoload -U compinit && compinit
-
-export WASMTIME_HOME="$HOME/.wasmtime"
-
-export PATH="$WASMTIME_HOME/bin:$PATH"
