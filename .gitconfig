@@ -4,7 +4,7 @@
 [http]
 	sslVerify = true
 [core]
-	editor = vim
+	editor = nvim
 [diff]
 	tool = vimdiff
 [ghq]
@@ -18,3 +18,5 @@
 	enabled = true
 [include]
 	path = ~/.gitconfig.local
+[commit]
+	verbose = true

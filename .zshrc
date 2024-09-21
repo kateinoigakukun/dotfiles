@@ -14,7 +14,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
 : ${HISTFILE:="$HOME/.zsh_history"}
-[[ "$SAVEHIST" = 0 ]] && SAVEHIST=100000
+[[ "$SAVEHIST" = 0 ]] && export SAVEHIST=100000
+[[ "$HISTSIZE" = 0 ]] && export HISTSIZE=100000
 
 # use emacs keybind
 bindkey -e

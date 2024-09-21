@@ -20,10 +20,6 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_autowrite = 1
 
-Plug 'scrooloose/nerdtree'
-let g:NERDTreeShowHidden = 1
-nnoremap <C-o> :NERDTreeToggle<CR>
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :FZFFileList<CR>
