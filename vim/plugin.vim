@@ -22,8 +22,7 @@ let g:vim_markdown_autowrite = 1
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :FZFFileList<CR>
-command! FZFFileList call fzf#run(fzf#wrap({ 'source': 'git ls-files' }))
+nnoremap <C-p> :GitFiles<CR>
 
 Plug 'github/copilot.vim'
 let g:copilot_filetypes = { '*': v:true }
@@ -32,7 +31,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 
-Plug 'kateinoigakukun/swift-demangle-vim', { 'for': ['llvm', 'sil'] }
+Plug 'kateinoigakukun/swift-demangle-vim'
 let g:swift_demangle#options = ['-compact']
 
 call plug#end()

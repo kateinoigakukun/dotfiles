@@ -45,7 +45,7 @@ for h in "${HASHES[@]}"; do
         exit 1
     fi
 done
-git push origin -f "$BRANCH_NAME:$BRANCH_NAME"
+git push "${GIT_PR_PUSH_REMOTE:-origin}" -f "$BRANCH_NAME:$BRANCH_NAME"
 git checkout "$OLD_BRANCH"
 git branch -D "$BRANCH_NAME"
 

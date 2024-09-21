@@ -10,10 +10,8 @@ set autoindent
 set smartindent
 set clipboard=unnamed
 set wildmenu
-set pumheight=10
 set shiftwidth=2
 set nofoldenable
-set expandtab
 
 set grepprg=git\ grep\ -I\ --line-number
 
@@ -42,4 +40,9 @@ augroup END
 let s:local_vimrc = expand('$HOME/.vimrc.local')
 if filereadable(s:local_vimrc)
   execute 'source' s:local_vimrc
+endif
+
+let s:cwd_vimrc = expand('.vimrc.local')
+if filereadable(s:cwd_vimrc)
+  execute 'source' s:cwd_vimrc
 endif
