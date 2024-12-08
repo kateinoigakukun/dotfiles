@@ -13,7 +13,7 @@ set wildmenu
 set shiftwidth=2
 set nofoldenable
 
-set grepprg=git\ grep\ -I\ --line-number
+set grepprg=git\ grep\ -I\ --line-number\ --column
 
 filetype plugin indent on
 
