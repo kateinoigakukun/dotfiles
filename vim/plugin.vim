@@ -23,6 +23,7 @@ let g:vim_markdown_autowrite = 1
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :GitFiles<CR>
+nnoremap <C-f> :RG<CR>
 
 Plug 'github/copilot.vim'
 let g:copilot_filetypes = { '*': v:true }
