@@ -1,20 +1,57 @@
 #!/bin/bash
 
 DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-echo "Make dotfile symlinks ..."
 
-dotfiles=(.vimrc .zshrc .tmux.conf .gitconfig);
+function info() {
+  echo -e "\033[32m*\033[m $1"
+}
+
+info "Make dotfile symlinks ..."
+
+dotfiles=(.vimrc .tmux.conf);
 for file in ${dotfiles[@]}; do
-  ln -snfv "$DOTFILES_DIR/$file" "$HOME/$file";
+  info "Make $file symlink ..."
+  ln -snf "$DOTFILES_DIR/$file" "$HOME/$file";
 done
 
-echo "Make dotfile symlinks under ~/.config ..."
+if [ ! -e "$HOME/.zshenv" ]; then
+  info "Make .zshenv"
+  cat <<EOF > "$HOME/.zshenv"
+export DOTFILES_DIR="$DOTFILES_DIR"
+source "\$DOTFILES_DIR/.zshenv"
+EOF
+else
+  info ".zshenv already exists, skip."
+fi
+
+if [ ! -e "$HOME/.zshrc" ]; then
+  info "Make .zshrc"
+  cat <<EOF > "$HOME/.zshrc"
+source "\$DOTFILES_DIR/.zshrc"
+EOF
+else
+  info ".zshrc already exists, skip."
+fi
+
+if [ ! -e "$HOME/.gitconfig" ]; then
+  info "Make .gitconfig"
+  cat <<EOF > "$HOME/.gitconfig"
+[include]
+	path = "$DOTFILES_DIR/.gitconfig"
+EOF
+else
+  info ".gitconfig already exists, skip."
+fi
+
+info "Make dotfile symlinks under ~/.config ..."
 
 mkdir -p $HOME/.config;
 
-ln -snfv "$DOTFILES_DIR/config/nvim" "$HOME/.config";
-ln -snfv "$DOTFILES_DIR/config/alacritty" "$HOME/.config";
-ln -snfv "$DOTFILES_DIR/config/git" "$HOME/.config";
+info "Make nvim, alacritty, git symlinks ..."
+ln -snf "$DOTFILES_DIR/config/nvim" "$HOME/.config";
+ln -snf "$DOTFILES_DIR/config/alacritty" "$HOME/.config";
+ln -snf "$DOTFILES_DIR/config/git" "$HOME/.config";
 
+info "Make vim ftplugin symlink ..."
 mkdir -p "$HOME/.vim"
-ln -snfv "$DOTFILES_DIR/vim/ftplugin" "$HOME/.vim"
+ln -snf "$DOTFILES_DIR/vim/ftplugin" "$HOME/.vim"

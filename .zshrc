@@ -58,11 +58,6 @@ if [[ -e "$ZSH_PLUGINS" ]]; then
   source $ZSH_PLUGINS
 fi
 
-ZSHRC_LOCAL="$HOME/.zshrc.local"
-if [[ -e $ZSHRC_LOCAL ]]; then
-  source $ZSHRC_LOCAL
-fi
-
 DOTFILES_LOCAL_BIN="$DOTFILES_PATH/local/bin"
 if [[ -d $DOTFILES_LOCAL_BIN ]]; then
   export PATH="$DOTFILES_LOCAL_BIN:$PATH"
