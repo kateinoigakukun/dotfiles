@@ -14,19 +14,10 @@ for file in ${dotfiles[@]}; do
   ln -snf "$DOTFILES_PATH/$file" "$HOME/$file";
 done
 
-if [ ! -e "$HOME/.zshenv" ]; then
-  info "Make .zshenv"
-  cat <<EOF > "$HOME/.zshenv"
-export DOTFILES_PATH="$DOTFILES_PATH"
-source "\$DOTFILES_PATH/.zshenv"
-EOF
-else
-  info ".zshenv already exists, skip."
-fi
-
 if [ ! -e "$HOME/.zshrc" ]; then
   info "Make .zshrc"
   cat <<EOF > "$HOME/.zshrc"
+export DOTFILES_PATH="$DOTFILES_PATH"
 source "\$DOTFILES_PATH/.zshrc"
 EOF
 else
