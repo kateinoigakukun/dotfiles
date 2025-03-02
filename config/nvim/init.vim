@@ -9,5 +9,8 @@ if isdirectory(s:pyenv_shims)
   let g:python3_host_prog = s:pyenv_shims . 'python3'
 endif
 
-colorscheme vim
+" Use vim colorscheme if available
+if !empty(globpath(&runtimepath, "colors/vim.lua"))
+  colorscheme vim
+endif
 set notermguicolors
