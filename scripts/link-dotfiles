@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOTFILES_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+DOTFILES_PATH="$(cd "$(dirname "$0")/.." && pwd)"
 
 function info() {
   echo -e "\033[32m*\033[m $1"
@@ -11,14 +11,14 @@ info "Make dotfile symlinks ..."
 dotfiles=(.vimrc .tmux.conf);
 for file in ${dotfiles[@]}; do
   info "Make $file symlink ..."
-  ln -snf "$DOTFILES_DIR/$file" "$HOME/$file";
+  ln -snf "$DOTFILES_PATH/$file" "$HOME/$file";
 done
 
 if [ ! -e "$HOME/.zshenv" ]; then
   info "Make .zshenv"
   cat <<EOF > "$HOME/.zshenv"
-export DOTFILES_DIR="$DOTFILES_DIR"
-source "\$DOTFILES_DIR/.zshenv"
+export DOTFILES_PATH="$DOTFILES_PATH"
+source "\$DOTFILES_PATH/.zshenv"
 EOF
 else
   info ".zshenv already exists, skip."
@@ -27,7 +27,7 @@ fi
 if [ ! -e "$HOME/.zshrc" ]; then
   info "Make .zshrc"
   cat <<EOF > "$HOME/.zshrc"
-source "\$DOTFILES_DIR/.zshrc"
+source "\$DOTFILES_PATH/.zshrc"
 EOF
 else
   info ".zshrc already exists, skip."
@@ -37,7 +37,7 @@ if [ ! -e "$HOME/.gitconfig" ]; then
   info "Make .gitconfig"
   cat <<EOF > "$HOME/.gitconfig"
 [include]
-	path = "$DOTFILES_DIR/.gitconfig"
+	path = "$DOTFILES_PATH/.gitconfig"
 EOF
 else
   info ".gitconfig already exists, skip."
@@ -48,10 +48,10 @@ info "Make dotfile symlinks under ~/.config ..."
 mkdir -p $HOME/.config;
 
 info "Make nvim, alacritty, git symlinks ..."
-ln -snf "$DOTFILES_DIR/config/nvim" "$HOME/.config";
-ln -snf "$DOTFILES_DIR/config/alacritty" "$HOME/.config";
-ln -snf "$DOTFILES_DIR/config/git" "$HOME/.config";
+ln -snf "$DOTFILES_PATH/config/nvim" "$HOME/.config";
+ln -snf "$DOTFILES_PATH/config/alacritty" "$HOME/.config";
+ln -snf "$DOTFILES_PATH/config/git" "$HOME/.config";
 
 info "Make vim ftplugin symlink ..."
 mkdir -p "$HOME/.vim"
-ln -snf "$DOTFILES_DIR/vim/ftplugin" "$HOME/.vim"
+ln -snf "$DOTFILES_PATH/vim/ftplugin" "$HOME/.vim"
