@@ -17,6 +17,8 @@ setopt INC_APPEND_HISTORY
 [[ "$SAVEHIST" = 0 ]] && export SAVEHIST=100000
 [[ "$HISTSIZE" = 0 ]] && export HISTSIZE=100000
 
+TERM="xterm-256color"
+
 # use emacs keybind
 bindkey -e
 # case insensitive
