@@ -27,7 +27,7 @@ fi
 if [ ! -e "$HOME/.tmux.conf" ]; then
   info "Make .tmux.conf"
   cat <<EOF > "$HOME/.tmux.conf"
-source-file "$DOTFILES_DIR/.tmux.conf"
+source-file "$DOTFILES_PATH/.tmux.conf"
 EOF
 else
   info ".tmux.conf already exists, skip."
