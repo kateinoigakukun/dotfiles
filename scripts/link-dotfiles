@@ -8,7 +8,7 @@ function info() {
 
 info "Make dotfile symlinks ..."
 
-dotfiles=(.vimrc .tmux.conf);
+dotfiles=(.vimrc);
 for file in ${dotfiles[@]}; do
   info "Make $file symlink ..."
   ln -snf "$DOTFILES_DIR/$file" "$HOME/$file";
@@ -31,6 +31,15 @@ source "\$DOTFILES_DIR/.zshrc"
 EOF
 else
   info ".zshrc already exists, skip."
+fi
+
+if [ ! -e "$HOME/.tmux.conf" ]; then
+  info "Make .tmux.conf"
+  cat <<EOF > "$HOME/.tmux.conf"
+source-file "$DOTFILES_DIR/.tmux.conf"
+EOF
+else
+  info ".tmux.conf already exists, skip."
 fi
 
 if [ ! -e "$HOME/.gitconfig" ]; then
